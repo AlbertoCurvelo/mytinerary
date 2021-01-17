@@ -22,7 +22,6 @@ const CarouselCities=() =>{
     className="white-text botton carouselCitys"
     options={{
       fullWidth: true,
-      indicators: true,
       duration:800
     }}
   >

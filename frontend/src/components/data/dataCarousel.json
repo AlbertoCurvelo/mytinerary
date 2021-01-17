@@ -8,7 +8,7 @@
     "direction":"./assets/img/paris.webp"
   },
   {
-    "title":"Atenas",
+    "title":"Athens",
     "direction":"./assets/img/atenas.jpg"
   },
   {
@@ -23,7 +23,7 @@
     "direction":"./assets/img/ushuaia.jpg"
   },
   {
-    "title":"Pekin",
+    "title":"Peking",
     "direction":"./assets/img/pekin.jpg"
   },
   {
@@ -31,7 +31,7 @@
     "direction":"./assets/img/osaka.jpg"
   }],
   [{
-    "title":"Estocolmo",
+    "title":"Stockholm",
     "direction":"./assets/img/estocolmo.jpg"
   },
   {
@@ -39,11 +39,11 @@
     "direction":"./assets/img/bahia.webp"
   },
   {
-    "title":"Praga",
+    "title":"Prague",
     "direction":"./assets/img/praga.jpg"
   },
   {
-    "title":"Lisboa",
+    "title":"Lisbon",
     "direction":"./assets/img/lisboa.jpg"
   }]
 ]
