@@ -14,13 +14,19 @@ const City = (props) =>{
 
   return(
     <section className="cityPage">
-      <div style={{
-        backgroundImage:`url("${city.directionImage}")`
-      }} className="cityView city">
-        <div className="cityName">
-          <p className="titleCity">{city.titleCity}</p>
+      <div className="allCity">
+        <div style={{
+          backgroundImage:`url("${city.directionImage}")`
+        }} className="cityView city">
+          <div className="cityName">
+            <p className="titleCity">{city.titleCity}</p>
         </div>
       </div>
+        <div className="descriptionCity">
+          <p>{city.descriptionCity}</p>
+        </div>
+      </div>
+      
       <div className="seccionInfoCity">
         <h2>Content Itineraries from city - {city.titleCity}</h2>
       </div>

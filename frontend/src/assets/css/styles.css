@@ -384,6 +384,28 @@ footer{
   min-width: 42vw;
   min-height: 45vh;
 }
+.allCity{
+  padding: 2vw;
+  display: flex;
+  align-items:center;
+}
+.descriptionCity{
+  display: flex;
+  align-items: center;
+  min-height: 25vh;
+  color: white;
+  padding: 2vw;
+  text-indent: 1vw;
+  text-align: justify;
+  font-size: 1.1vw;
+  background-color: rgba(72, 20, 121, 0.685);
+  border-radius: 2vw;
+}
+.allCity>.cityView:hover{
+  transform: scale(1);
+  cursor: auto;
+  box-shadow: 0vw 0 2vw .25vw rgb(0, 46, 61);
+}
 /*itineraries*/
 .seccionInfoCity{
   color: #f8f8f8;
