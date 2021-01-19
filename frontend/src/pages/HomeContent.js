@@ -1,6 +1,6 @@
-import CarouselCities from './Carousel'
+import CarouselCities from '../components/Carousel'
 import {NavLink} from 'react-router-dom'
-import BaseLogo from './BaseLogo'
+import BaseLogo from '../components/BaseLogo'
 
 const HomeContent=() =>{
 
@@ -9,7 +9,9 @@ const HomeContent=() =>{
       <div className="bannerPrincipal">
         <BaseLogo/>
         <div className="slogan">
-          <p>Find your perfect trip, designed by insiders who know and love their cities</p>
+          <div>
+            <p>Find your perfect trip, designed by insiders who know and love their cities</p>
+          </div>
         </div>
       </div>
       <div className="call">

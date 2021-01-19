@@ -1,6 +1,6 @@
 import {Carousel} from 'react-materialize';
 import 'materialize-css/dist/css/materialize.min.css'
-import data from './data/dataCarousel.json'
+import data from '../data/dataCarousel.json'
 import Slide from './Slide'
 import M from 'materialize-css/dist/js/materialize'
 import React, { useEffect } from 'react'

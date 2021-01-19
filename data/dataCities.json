@@ -1,0 +1,73 @@
+[
+  {
+    "_id":"dsfbads56f165sd1fds1fdsfds1",
+    "titleCity":"Barcelona",
+    "directionImage":"../assets/img/barcelona.jpg",
+    "descriptionCity":"Barcelona is a city on the coast of northeastern Spain. It is the capital and largest city of the autonomous community of Catalonia, as well as the second most populous municipality of Spain. With a population of 1.6 million within city limits, its urban area extends to numerous neighbouring municipalities within the Province of Barcelona and is home to around 4.8 million people, making it the fifth most populous urban area in the European Union after Paris, the Ruhr area, Madrid, and Milan. It is one of the largest metropolises on the Mediterranean Sea, located on the coast between the mouths of the rivers Llobregat and Besòs, and bounded to the west by the Serra de Collserola mountain range, the tallest peak of which is 512 metres (1,680 feet) high."
+  },
+  {
+    "_id":"ds51f65ds1f1ds65fds15fg5",
+    "titleCity":"París",
+    "directionImage":"../assets/img/paris.webp",
+    "descriptionCity":"Paris is the capital and most populous city of France, with an estimated population of 2,148,271 residents as of 2020, in an area of more than 105 square kilometres (41 square miles). Since the 17th century, Paris has been one of Europe's major centres of finance, diplomacy, commerce, fashion, science and arts. The City of Paris is the centre and seat of government of the Île-de-France, or Paris Region, which has an estimated official 2020 population of 12,278,210, or about 18 percent of the population of France. The Paris Region had a GDP of €709 billion ($808 billion) in 2017. According to the Economist Intelligence Unit Worldwide Cost of Living Survey in 2018, Paris was the second most expensive city in the world, after Singapore, and ahead of Zürich, Hong Kong, Oslo and Geneva. Another source ranked Paris as most expensive, on a par with Singapore and Hong Kong, in 2018. "
+  },
+  {
+    "_id":"ds41f451dsf451651fds",
+    "titleCity":"Athens",
+    "directionImage":"../assets/img/atenas.jpg",
+    "descriptionCity":"Athens is the capital and largest city of Greece. Athens dominates the Attica region and is one of the world's oldest cities, with its recorded history spanning over 3,400 years and its earliest human presence started somewhere between the 11th and 7th millennium BC."
+  },
+  {
+    "_id":"f5ds165s1d51vvfdf",
+    "titleCity":"San Francisco",
+    "directionImage":"../assets/img/sanFrancisco.jpeg",
+    "descriptionCity":"San Francisco, officially the City and County of San Francisco, is a cultural, commercial, and financial center of Northern California. San Francisco is the 16th most populous city in the United States, and the fourth most populous in California, with 881,549 residents as of 2019. It covers an area of about 46.89 square miles (121.4 km2), mostly at the north end of the San Francisco Peninsula in the San Francisco Bay Area, making it the second most densely populated large U.S. city, and the fifth most densely populated U.S. county, behind only four of the five New York City boroughs. "
+  },
+  {
+    "_id":"ds4fe1wq651fewfcewcew",
+    "titleCity":"Orlando",
+    "directionImage":"../assets/img/orlando.jpg",
+    "descriptionCity":"Orlando is a city in the U.S. state of Florida and is the county seat of Orange County. In Central Florida, it is the center of the Orlando metropolitan area, which had a population of 2,509,831, according to U.S. Census Bureau figures released in July 2017, making it the 23rd-largest metropolitan area in the United States, the sixth-largest metropolitan area in the Southern United States, and the third-largest metropolitan area in Florida. As of 2019, Orlando had an estimated city-proper population of 287,442, making it the 71st-largest city in the United States, the fourth-largest city in Florida, and the state's largest inland city."
+  },{
+    "_id":"ds2f65ds165fgs1g561h5gffddsfsdf",
+    "titleCity":"Ushuaia",
+    "directionImage":"../assets/img/ushuaia.jpg",
+    "descriptionCity":"Ushuaia is the capital of Tierra del Fuego, Antártida e Islas del Atlántico Sur Province, Argentina, and the southernmost city of the country. Ushuaia claims the title of world's southernmost city. Ushuaia is located in a wide bay on the southern coast of Isla Grande de Tierra del Fuego, bounded on the north by the Martial mountain range and on the south by the Beagle Channel. "
+  },
+  {
+    "_id":"fgvcb1h65f1h65gfhfd165dsffg",
+    "titleCity":"Peking",
+    "directionImage":"../assets/img/pekin.jpg",
+    "descriptionCity":"Peking is the capital of the People's Republic of China. It is the world's most populous national capital city, with over 21 million residents within an administrative area of 16,410.5 km2 (6336 sq. mi.). It is located in Northern China, is governed as a municipality under the direct administration of the State Council with 16 urban, suburban, and rural districts. Beijing is mostly surrounded by Hebei Province with the exception of neighboring Tianjin to the southeast; together, the three divisions form the Jingjinji megalopolis and the national capital region of China. "
+  },
+  {
+    "_id":"dfg1f651h65gk165jh165fdgfd",
+    "titleCity":"Osaka",
+    "directionImage":"../assets/img/osaka.jpg",
+    "descriptionCity":"Osaka is a designated city in the Kansai region of Honshu in Japan. It is the capital city of Osaka Prefecture and the largest component of the Keihanshin Metropolitan Area, the second-largest metropolitan area in Japan and among the largest urban areas in the world with more than 20 million inhabitants."
+  },
+  {
+    "_id":"dsfsd65gfd65h165fgfdfddf",
+    "titleCity":"Stockholm",
+    "directionImage":"../assets/img/estocolmo.jpg",
+    "descriptionCity":""
+  },
+  {
+    "_id":"dsa4f65e1f651d65cdvssdvsd",
+    "titleCity":"Bahia",
+    "directionImage":"../assets/img/bahia.webp",
+    "descriptionCity":""
+  },
+  {
+    "_id":"df1sf51re65w1f5re61hgtrhtr",
+    "titleCity":"Prague",
+    "directionImage":"../assets/img/praga.jpg",
+    "descriptionCity":""
+  },
+  {
+    "_id":"fdsg2rd652g651ds561f65sd1f65dssd1",
+    "titleCity":"Lisbon",
+    "directionImage":"../assets/img/lisboa.jpg",
+    "descriptionCity":""
+  }
+]

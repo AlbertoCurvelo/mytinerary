@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import UserSideNav from './UserSideNav'
 import DropdownNav from './Dropdown'
 
 class Header extends Component {
@@ -9,7 +8,6 @@ class Header extends Component {
       <header className="App">
         <nav>
           <DropdownNav/>
-          <UserSideNav/>
         </nav>
       </header>
     )
