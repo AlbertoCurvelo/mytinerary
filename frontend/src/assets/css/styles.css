@@ -358,11 +358,10 @@ footer{
   flex-wrap: wrap;
   justify-content: center;
 }
-.cityView{
+.viewCities a{ 
   margin: 2vw;
-  min-width: 42vw;
-  min-height: 45vh;
-  background-color: chartreuse;
+}
+.cityView{
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -395,6 +394,7 @@ footer{
   min-height: 25vh;
   color: white;
   padding: 2vw;
+  margin-left: 2vw;
   text-indent: 1vw;
   text-align: justify;
   font-size: 1.1vw;
@@ -402,11 +402,11 @@ footer{
   border-radius: 2vw;
 }
 .allCity>.cityView{
-  flex: 2 0 60%
+  flex: 2 0 60vw
 }
 .allCity>.cityView:hover{
   transform: scale(1);
-  cursor: auto;
+  cursor: default;
   box-shadow: 0vw 0 2vw .25vw rgb(0, 46, 61);
 }
 .titleCity{
@@ -434,7 +434,7 @@ footer{
   margin: 2vh 0 0 0;
   font-weight: bold;
   text-shadow: .2vw .2vw rgb(72, 20, 121);
-  color: rgb(255, 150, 30) !important;
+  color: rgb(255, 150, 30);
 }
 /*Fin filtro*/
 /*itineraries*/
@@ -447,7 +447,7 @@ footer{
   scroll-behavior: smooth;
 }
 .seccionInfoCity h2{
-  color:rgba(72, 20, 121);
+  color:rgb(224, 132, 26);
   text-shadow: .2vw .2vw rgba(255, 255, 255); 
   font-size: 2.5vw;
   margin: 0;

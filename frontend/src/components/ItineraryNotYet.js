@@ -5,8 +5,8 @@ const ItineraryNotYet = () =>{
     <div className="ItineraryNotYet">
       <div className="imgItineraryNotYet"></div>
       <div className="viewInfoUser">
-        <p>Oops! We don't have itineraries yet. Make one!</p>
-        <p>Or looking for other city?</p>
+        <p>Oops! We don't have itineraries yet.</p>
+        <p>Looking for other city?</p>
         <Link to="/cities">
           <span><i className="material-icons">undo</i> Back cities</span>
         </Link>
