@@ -1,4 +1,4 @@
-import ItineraryNotYet from './ItineraryNotYet'
+import ItineraryNotYet from '../components/ItineraryNotYet'
 const { useState, useEffect } = require("react")
 const direccionHost='http://localhost:4000'
 

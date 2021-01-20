@@ -6,7 +6,7 @@ import Cities from './pages/Cities'
 import 'materialize-css/dist/css/materialize.min.css'
 import './assets/css/styles.css'
 import 'materialize-css/dist/js/materialize'
-import City from './components/City'
+import City from './pages/City'
 
 function App() {
   return (
