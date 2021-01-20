@@ -8,7 +8,7 @@ const ItineraryNotYet = () =>{
         <p>Oops! We don't have itineraries yet.</p>
         <p>Looking for other city?</p>
         <Link to="/cities">
-          <span><i className="material-icons">undo</i> Back cities</span>
+          <span><i className="material-icons">undo</i> Back to cities</span>
         </Link>
       </div>
     </div>

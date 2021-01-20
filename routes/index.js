@@ -9,8 +9,7 @@ router.route('/cities/:id')
 .get(citiesController.singleCity)
 
 router.route('/admin/cities/:request')
-.get(citiesController.request)
-.post(citiesController.request)
-.delete(citiesController.request)
+.post(citiesController.postCity)
+.delete(citiesController.deleteCity)
 
 module.exports = router

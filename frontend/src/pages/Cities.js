@@ -24,12 +24,9 @@ const Cities = () =>{
   por lo que renderiza */
   const filter = e =>{
     const textFindCities=e.target.value
-    textFindCities!==""
-    ?
     setFilterCities(cities.filter(({titleCity})=>{
-      return titleCity.toLowerCase().indexOf(textFindCities.toLowerCase()) === 0
+      return titleCity.toLowerCase().indexOf(textFindCities.toLowerCase().trim()) === 0
     }))
-    :setFilterCities(cities)
   }
   
   return(
