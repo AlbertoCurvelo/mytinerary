@@ -1,3 +1,4 @@
+import ItineraryNotYet from './ItineraryNotYet'
 const { useState, useEffect } = require("react")
 const direccionHost='http://localhost:4000'
 
@@ -5,8 +6,8 @@ const City = (props) =>{
   const [city,setCity]=useState({})
 
   useEffect(() => {
+    window.scrollTo(0,0)
     const id= props.match.params.id
-    console.log(direccionHost+'/cities/'+id)
     fetch(direccionHost+'/cities/'+id)
     .then(res => res.json())
     .then(data => setCity(data.respuesta))
@@ -28,7 +29,8 @@ const City = (props) =>{
       </div>
       
       <div className="seccionInfoCity">
-        <h2>Content Itineraries from city - {city.titleCity}</h2>
+        <h2>Itineraries from city - {city.titleCity}</h2>
+        <ItineraryNotYet/>
       </div>
     </section>
   )
