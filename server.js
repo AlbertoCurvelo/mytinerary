@@ -1,5 +1,6 @@
 /*Importaciones*/
 const express = require('express')
+require('dotenv').config()
 const cors=require('cors')
 const router = require ('./routes/index')
 require('./config/database')
@@ -12,5 +13,4 @@ app.use(express.json())
 /*Pedidos*/
 app.use("/",router)
 /*Server port e iniciacion*/
-const port=4000
-app.listen(port, () => console.log(`App listening on port ${port}`))
+app.listen(process.env.PORT, () => console.log(`App listening on port ${process.env.PORT}`))

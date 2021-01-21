@@ -7,6 +7,9 @@ import 'materialize-css/dist/css/materialize.min.css'
 import './assets/css/styles.css'
 import 'materialize-css/dist/js/materialize'
 import City from './pages/City'
+//modulo Admin
+import Admin from './admin/Admin'
+import ACities from './admin/Cities'
 
 function App() {
   return (
@@ -17,6 +20,8 @@ function App() {
         <Route exact path="/" component={HomeContent} />
         <Route exact path="/cities" component={Cities} />
         <Route path="/cities/:id" component={City} />
+        <Route exact path="/admin" component={Admin}/>
+        <Route path="/admin/cities" component={ACities}/>
         <Redirect to="/"/>
       </Switch>
     <Footer />

@@ -746,3 +746,55 @@ footer{
   color: #fff;
 }
 /*Fin de estilos de alerta*/
+
+/*Menu Admin*/
+.adminPage{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2vw;
+}
+.adminPage .opciones{
+  flex:2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.aCities{
+  display: flex;
+  justify-content: space-between;
+  padding: 2vw;
+  background-image:linear-gradient(180deg, rgba(0, 135, 180, 0.801), #f8f8f8);
+}
+.aCities .backHome i{
+  font-size: 8vw;
+}
+.row{
+  padding: 2vw;
+  min-height: 50vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: #0c200d8a;
+}
+.row .col.s12{
+  margin: auto;
+}
+.row div, .row label,.row input,.row textarea{
+  color: #ffffff !important;
+}
+.contentTab{
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+}
+.input-field{
+  width: 50vw;
+}
+.contentTab button{
+  max-width: 15vw;
+}
+/*Fin menu Admin*/

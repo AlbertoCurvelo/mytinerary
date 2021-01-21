@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 /*Conexion a la base de datos*/
-mongoose.connect('mongodb+srv://etodb:20874678db@cluster0.95mw7.mongodb.net/mytinerary?retryWrites=true&w=majority',{
+mongoose.connect(process.env.MONGOURL,{
   useNewUrlParser: true,
   useCreateIndex: true,
   useUnifiedTopology: true,

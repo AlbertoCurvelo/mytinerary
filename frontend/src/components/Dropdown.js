@@ -24,6 +24,7 @@ const DropdownNav =() =>{
   >
     <NavLink exact to="/">Home</NavLink>
     <NavLink to="/cities">Cities</NavLink>
+    <NavLink to="/admin">Admin</NavLink>
     <Divider />
   </Dropdown>
   )

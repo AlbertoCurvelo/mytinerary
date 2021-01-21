@@ -1,7 +1,10 @@
+const { json } = require('express')
 const City = require('../models/City')
 const citiesController = {
   //Añadir ciudad
   postCity:(req,res)=>{
+    if(req.body.descriptionCity==='') delete req.body.descriptionCity
+    console.log(req.body)
     const cityAGuardar = new City({
       titleCity:req.body.titleCity,
       directionImage:req.body.directionImage,
@@ -12,7 +15,7 @@ const citiesController = {
       return res.json({success:true, respuesta: guardoCity})
     })
     .catch(error =>{
-      return res.json({success:false, error: 'La ruta es valida, pero algún parametro del JSON recibido no es valido: '+ error})
+      return res.json({success:false, error: 'Error al intentar guardar: '+ error})
     })
   },
   //Borrar ciudad

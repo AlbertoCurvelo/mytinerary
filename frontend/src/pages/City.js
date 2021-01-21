@@ -11,7 +11,7 @@ const City = (props) =>{
     fetch(direccionHost+'/cities/'+id)
     .then(res => res.json())
     .then(data => setCity(data.respuesta))
-  }, [props.match.params.id])
+  }, [])
 
   return(
     <section className="cityPage">
