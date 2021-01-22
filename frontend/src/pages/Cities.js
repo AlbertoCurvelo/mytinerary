@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react'
 import {Link} from 'react-router-dom'
 import {TextInput} from 'react-materialize'
-const direccionHost='http://localhost:4000'
+const direccionHost='http://localhost:4000/api'
 
 const Cities = () =>{
   const [cities,setCities]=useState([])
   const [filterCities,setFilterCities]=useState([])
 
   useEffect(() => {
+    window.scrollTo(0,0)
     fetch(direccionHost+'/cities')
     .then(res=>res.json())
     .then(data=>{

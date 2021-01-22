@@ -797,4 +797,14 @@ footer{
 .contentTab button{
   max-width: 15vw;
 }
+.buttonE{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: .5vw;
+  max-width: 3vw;
+}
+.idColor{
+  color: #32d864;
+}
 /*Fin menu Admin*/

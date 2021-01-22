@@ -1,6 +1,6 @@
 import ItineraryNotYet from '../components/ItineraryNotYet'
 const { useState, useEffect } = require("react")
-const direccionHost='http://localhost:4000'
+const direccionHost='http://localhost:4000/api'
 
 const City = (props) =>{
   const [city,setCity]=useState({})
@@ -11,7 +11,7 @@ const City = (props) =>{
     fetch(direccionHost+'/cities/'+id)
     .then(res => res.json())
     .then(data => setCity(data.respuesta))
-  }, [])
+  }, [props.match.params.id])
 
   return(
     <section className="cityPage">

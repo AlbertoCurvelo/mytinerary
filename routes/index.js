@@ -8,7 +8,7 @@ router.route('/cities')
 router.route('/cities/:id')
 .get(citiesController.singleCity)
 
-router.route('/admin/cities/:request')
+router.route('/admin/cities/:id')
 .post(citiesController.postCity)
 .delete(citiesController.deleteCity)
 

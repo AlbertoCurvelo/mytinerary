@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import {Tabs,Tab,TextInput,Textarea,Button} from 'react-materialize'
 import axios from 'axios'
 import { useState } from "react"
+import CargarDatosCities from "./components/CargarDatosCities"
 
 const Cities = () =>{
   const [newCity,setNewCity]=useState({})
@@ -22,14 +23,16 @@ const Cities = () =>{
   }
   const bGuardarNewCity = async (e) =>{
     e.preventDefault();
-    const res= await axios.post('http://localhost:4000/admin/cities/newCity',newCity)
+    const res= await axios.post('http://localhost:4000/api/admin/cities/newCity',newCity)
     if(res.data.success){
       setNewAlert({
         typeAlert:'success',
         typeIcon:'check',
         msj:'Se completo con exito'
       })
-
+      e.target.parentElement.querySelector('#titleNewCity').value="" 
+      e.target.parentElement.querySelector('#urlNewCity').value="" 
+      e.target.parentElement.querySelector('#descriptionNewCity').value=""
     }else{
       setNewAlert({
         typeAlert:'error',
@@ -62,7 +65,7 @@ const Cities = () =>{
             onChange={readInput}
           />
           <Textarea
-            name="descriptionCity:"
+            name="descriptionCity"
             id="descriptionNewCity"
             label="Descripcion"
             l={12}
@@ -78,21 +81,32 @@ const Cities = () =>{
           >
             Guardar
           </Button>
-          {console.log(newAlert)}
-          <div className="resAlert">
-            <div className={`materialert ${newAlert.typeAlert}`}>
-              <div className="material-icons">{newAlert.typeIcon}</div>
-              {newAlert.msj}
+          {
+            Object.entries(newAlert).length !== 0
+            ?
+            <>
+              <div className="resAlert">
+              <div className={`materialert ${newAlert.typeAlert}`}>
+                <div className="material-icons">{newAlert.typeIcon}</div>
+                {newAlert.msj}
+              </div>
             </div>
+            {
+              setInterval(() => {
+                setNewAlert({})
+              }, 3500)
+            }
+            </>
+            :<></>
+          }
           </div>
-        </div>
         </Tab>
         <Tab
           active
           options={options}
           title="Eliminar"
         >
-          Eliminar
+          <CargarDatosCities/>
         </Tab>
         <Tab
           active

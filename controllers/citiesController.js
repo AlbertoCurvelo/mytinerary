@@ -1,8 +1,8 @@
-const { json } = require('express')
 const City = require('../models/City')
 const citiesController = {
   //Añadir ciudad
   postCity:(req,res)=>{
+    console.log(req.body)
     if(req.body.descriptionCity==='') delete req.body.descriptionCity
     console.log(req.body)
     const cityAGuardar = new City({
@@ -19,9 +19,14 @@ const citiesController = {
     })
   },
   //Borrar ciudad
-  deleteCity:(req,res)=>{
+  deleteCity: async (req,res)=>{
     const id=req.params.id
-    return res.json({success:false, respuesta:'Llegue aqui'})
+    try {
+      const data = await City.findOneAndRemove({_id:id})
+      return res.json({success:true, respuesta:data})
+    } catch (e) {
+      return res.json({success:false, respuesta: 'Ha ocurrido un error en el proceso: '+e})
+    }
   },
   //Devuelve todas las ciudades en una lista de objetos, sin uso parametros de entrada
   allCities: async(req,res)=>{
@@ -34,7 +39,7 @@ const citiesController = {
   },
   //Devuelve una sola ciudad en un objeto, recibiendo como parametro el id
   //Bahia - 60087b1fa030612f10239670 
-  singleCity:async (req,res)=>{
+  singleCity: async (req,res)=>{
     const id=req.params.id
     try {
       const data = await City.findById(id) //{_id:req.params.id}
