@@ -1,11 +1,15 @@
 import { useEffect, useState } from 'react'
-import {Link} from 'react-router-dom'
 import {TextInput} from 'react-materialize'
+import NotYet from '../components/NotYet'
+import Loader from '../components/Loader'
+import ViewCity from '../components/ViewCity'
+
 const direccionHost='http://localhost:4000/api'
 
 const Cities = () =>{
   const [cities,setCities]=useState([])
   const [filterCities,setFilterCities]=useState([])
+  const [textFindUse, setTextFindUse]=useState(false)
 
   useEffect(() => {
     window.scrollTo(0,0)
@@ -24,11 +28,14 @@ const Cities = () =>{
   por nombre de la ciudad y retorno a guardarla en una variable de estado, 
   por lo que renderiza */
   const filter = e =>{
-    const textFindCities=e.target.value
+    setTextFindUse(true)
+    //Separa las tildes de los caracteres acentuados los elimina y los remplaza con ''
+    const textFindCities=e.target.value.normalize("NFD").replace(/[\u0300-\u036f]/g, '')
     setFilterCities(cities.filter(({titleCity})=>{
-      return titleCity.toLowerCase().indexOf(textFindCities.toLowerCase().trim()) === 0
+      return titleCity.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, '').indexOf(textFindCities.toLowerCase().trim()) === 0
     }))
   }
+  
   
   return(
     <section className="cityPage"> 
@@ -37,25 +44,24 @@ const Cities = () =>{
         <TextInput  
           icon='search'
           id="inputFindCities"
+          className="inputSearch"
           label="Type here for search"
           onChange={filter}
         /> 
       </div>  
       <div className="viewCities">
         {
-        filterCities.map(({_id,directionImage,titleCity})=>{
+        Object.entries(filterCities).length !== 0
+        ?
+          filterCities.map((city)=>{
           return(
-            <Link key={_id} to={`/cities/${_id}`}>
-              <div style={{
-                backgroundImage:`url("${directionImage}")`
-              }} className="cityView">
-                <div className="cityName">
-                  <p className="titleCity">{titleCity}</p>
-                </div>
-              </div>
-            </Link>
+            <ViewCity key={city._id} city={city}/>
           )
         })
+        :
+          textFindUse===false
+          ? <Loader/>
+          : <NotYet msj={"Does not match any results, try another search"} redirect={false}/>
         }
       </div>
     </section>

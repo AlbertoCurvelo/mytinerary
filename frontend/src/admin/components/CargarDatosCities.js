@@ -39,7 +39,7 @@ const CargarDatosCities = () =>{
 
   return (
   <div>
-    <Table centered="true">
+    <Table>
       <thead className="orange-text darken-3">
         <tr>
           <th data-field="id">

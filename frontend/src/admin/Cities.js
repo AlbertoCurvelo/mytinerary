@@ -104,16 +104,9 @@ const Cities = () =>{
         <Tab
           active
           options={options}
-          title="Eliminar"
+          title="Eliminar / Editar"
         >
           <CargarDatosCities/>
-        </Tab>
-        <Tab
-          active
-          options={options}
-          title="Modificar"
-        >
-          Modificar
         </Tab>
       </Tabs>
       <div className="backHome">
