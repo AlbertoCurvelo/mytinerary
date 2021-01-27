@@ -3,6 +3,7 @@ import {Tabs,Tab,TextInput,Textarea,Button} from 'react-materialize'
 import axios from 'axios'
 import { useState } from "react"
 import CargarDatosCities from "./components/CargarDatosCities"
+import Alert from './components/Alert'
 
 const Cities = () =>{
   const [newCity,setNewCity]=useState({})
@@ -25,20 +26,13 @@ const Cities = () =>{
     e.preventDefault();
     const res= await axios.post('http://localhost:4000/api/admin/cities/newCity',newCity)
     if(res.data.success){
-      setNewAlert({
-        typeAlert:'success',
-        typeIcon:'check',
-        msj:'Se completo con exito'
-      })
+      <Alert setNewAlert={setNewAlert} success={res.data.success}/>
       e.target.parentElement.querySelector('#titleNewCity').value="" 
       e.target.parentElement.querySelector('#urlNewCity').value="" 
       e.target.parentElement.querySelector('#descriptionNewCity').value=""
     }else{
-      setNewAlert({
-        typeAlert:'error',
-        typeIcon:'error',
-        msj:'Error: '+res.data.error
-      })
+      {console.log(new)}
+      <Alert setNewAlert={setNewAlert} success={res.data.success} error={res.data.error}/>
     }
   } 
   return(
