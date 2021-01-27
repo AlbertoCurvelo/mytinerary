@@ -1,6 +1,8 @@
 import { useEffect,useState } from 'react'
 import {Table,Button,Icon} from 'react-materialize'
 import axios from 'axios'
+import ModalEdit from './ModalEdit'
+import Alert from './Alert'
 const direccionHost='http://localhost:4000/api'
 
 const CargarDatosCities = () =>{
@@ -20,23 +22,12 @@ const CargarDatosCities = () =>{
     e.preventDefault();
     const res= await axios.delete(`http://localhost:4000/api/admin/cities/${e.target.value}`)
     if(res.data.success){
-      setNewAlert({
-        typeAlert:'success',
-        typeIcon:'check',
-        msj:'Se completo con exito'
-      })
+      <Alert setNewAlert={setNewAlert} success={res.data.success}/>
       setRefresh(!refresh)
     }else{
-      setNewAlert({
-        typeAlert:'error',
-        typeIcon:'error',
-        msj:'Error: '+res.data.error
-      })
+      <Alert setNewAlert={setNewAlert} success={res.data.success} error={res.data.error}/>
     }
-    
-    console.log(newAlert)
   }
-
   return (
   <div>
     <Table>
@@ -58,7 +49,8 @@ const CargarDatosCities = () =>{
       </thead>
       <tbody>
         {
-          cities.map(({_id,titleCity,directionImage})=>{
+          cities.map((city)=>{
+            const {_id,titleCity,directionImage}=city
             return (
             <tr key={_id}>
               <td className="idColor">
@@ -70,7 +62,8 @@ const CargarDatosCities = () =>{
               <td>
                 {directionImage}
               </td>
-              <td>
+              <td className="iconosMod">
+                <ModalEdit key={_id} city={city}/>     
                 <Button
                   value={_id}
                   node="button"

@@ -10,6 +10,7 @@ router.route('/cities/:id')
 
 router.route('/admin/cities/:id')
 .post(citiesController.postCity)
+.put(citiesController.putCity)
 .delete(citiesController.deleteCity)
 
 module.exports = router

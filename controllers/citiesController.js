@@ -2,9 +2,7 @@ const City = require('../models/City')
 const citiesController = {
   //Añadir ciudad
   postCity:(req,res)=>{
-    console.log(req.body)
     if(req.body.descriptionCity==='') delete req.body.descriptionCity
-    console.log(req.body)
     const cityAGuardar = new City({
       titleCity:req.body.titleCity,
       directionImage:req.body.directionImage,
@@ -16,6 +14,24 @@ const citiesController = {
     })
     .catch(error =>{
       return res.json({success:false, error: 'Error al intentar guardar: '+ error})
+    })
+  },
+  putCity:(req,res)=>{
+    const id=req.params.id
+    const newCity=req.body.newCity
+    console.log(newCity)
+    City.findByIdAndUpdate(
+      {_id:id},
+      {
+        titleCity:newCity.titleCity,
+        directionImage:newCity.directionImage,
+        descriptionCity:newCity.descriptionCity
+      })
+    .then(modificoCity =>{
+      return res.json({success:true, respuesta: modificoCity})
+    })
+    .catch(error =>{
+      return res.json({success:false, error: 'Error al intentar modificar: '+ error})
     })
   },
   //Borrar ciudad
