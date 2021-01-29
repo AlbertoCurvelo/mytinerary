@@ -6,7 +6,7 @@ const activitiesController = {
     const activityAGuardar = new Activity({
       idItinerary,actImg,actTitle
     })
-    itineraryAGuardar.save()
+    activityAGuardar.save()
     .then(guardado =>{
       return res.json({
         success:true, respuesta: guardado})
@@ -14,4 +14,15 @@ const activitiesController = {
     .catch(error =>{
       return res.json({success:false, error: 'Error al intentar '+error})
     })
+  },
+  getActivitiesForItinerary:async(req,res)=>{
+    const id= req.params.id
+    try {
+      const data= await Activity.find({idItinerary:id})
+      return res.json({success:true , respuesta: data})
+    } catch (error) {
+      return res.json({success:false, respuesta:'Error al intentar pedir los datos a la db: '+error})
+    }
   }
+}
+module.exports = activitiesController

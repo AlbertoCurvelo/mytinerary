@@ -1,7 +1,7 @@
 const mongoose= require ('mongoose')
 
 const activitySchema = new mongoose.Schema({
-  idItinerary:{type: String, required:true},
+  idItinerary:{type: mongoose.Schema.ObjectId, ref: 'itinerary'},
   actImg:{type: String, required:true},
   actTitle:{type: String, required:true}
 })

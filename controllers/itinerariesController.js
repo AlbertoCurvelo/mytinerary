@@ -17,16 +17,6 @@ const itinerariesController = {
       return res.json({success:false, error: 'Error al intentar '+error})
     })
   },
-  singleItinerary:async(req,res)=>{
-    console.log(req.params.id)
-    const id=req.params.id
-    try {
-      const data= await Itinerary.find({_id:id}).populate('idCity')
-      return res.json({success:true, respuesta:data})
-    } catch (error) {
-      return res.json({success:false, respuesta:'Ocurrio un problema con la peticion a la DB: '+error})
-    }
-  },
   allItineraries:async(req,res)=>{
     try {
       const data= await Itinerary.find()

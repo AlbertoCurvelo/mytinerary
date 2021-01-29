@@ -19,7 +19,6 @@ const citiesController = {
   putCity:(req,res)=>{
     const id=req.params.id
     const newCity=req.body.newCity
-    console.log(newCity)
     City.findByIdAndUpdate(
       {_id:id},
       {

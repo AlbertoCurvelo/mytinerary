@@ -533,15 +533,14 @@ footer{
 }
 .userAutorImg{
   margin: 2vw;
-  max-width: 15vw;
-  min-width: 15vw;
-  min-height: 15vw;
+  max-width: 15vw
 }
 .userAutorImg>div{
-  min-height: 15vw;
+  height: 10vw;
+  width: 10vw;
   background-repeat: no-repeat;
   background-position:center;
-  background-size: contain;
+  background-size: cover;
   border-radius: 10vw !important;
 }
 .contentItinerary{
@@ -554,15 +553,6 @@ footer{
   margin: auto;
   max-width: fit-content;
   border-radius: 25vw !important;
-}
-.activities{
-  height: 25vh;
-  max-height: 40vh;
-  max-width: 95%;  
-  background-color:rgba(184, 132, 233, 0.089);
-  border-radius: 2vw;
-  box-shadow: 0px 0px 10px 2px rgba(184, 132, 233, 0.336);
-  margin: 2vh 0; /*cambiar por auto*/
 }
 .comments{
   margin: 2vh auto;
@@ -590,7 +580,6 @@ footer{
   align-items: center;
 }
 .coment{
-  padding: 1vw;
   display: flex;
   justify-content: space-between;
 }
@@ -619,6 +608,81 @@ footer{
   color: rgb(99, 29, 165);
   font-weight: bold;
 }
+.inputComent{
+  margin: 2vw auto 0 auto;
+}
+.inputComent>div{
+  max-width: 90%;
+  max-height: 5vh;
+  display: flex;
+  justify-content:space-around;
+  align-items: center;
+  border-radius: 5vw;
+  background-color: rgba(99, 29, 165, 0.158); 
+  box-shadow: 0px 0px 10px 4px rgba(184, 132, 233, 0.336);
+}
+#inputComent{
+  border-bottom:0 !important;
+  margin: .1vw 0 0 2vw;
+}
+.inputComent i{
+  padding-right: 1vw;
+}
+.inputComent label, .inputComent input, .inputComent i{
+  color:white !important
+}
+/*activities*/
+.activities{
+  width: 95%;  
+  border-radius: 2vw;
+  background-color:rgba(184, 132, 233, 0.089);
+  box-shadow: 0px 0px 10px 2px rgba(184, 132, 233, 0.336);
+  margin: 2vh auto;
+  white-space: nowrap;
+  overflow-x: scroll;
+}
+.activity{
+  margin: 1vw;
+  width: 15vw;
+  height: 15vw;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 1vw !important;
+  display: inline-block;
+}
+.activity p{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+}
+.activity p span{
+  font-family: 'Yellowtail', cursive;
+  font-weight: bold;
+  font-size: 2vw;
+  width: 100%;
+  background-color: rgba(72, 20, 121, 0.726);
+  border-radius: 0 0 1vw 1vw;
+  letter-spacing: .3vw;
+}
+/*Scroll horizontal*/
+.activities::-webkit-scrollbar {
+  width: 10px;
+  height: 15px;
+}
+.activities::-webkit-scrollbar-thumb {
+  background:  rgba(72, 20, 121, 0.993);
+  border-radius: 10px;
+  box-shadow: inset 2px 2px 2px hsl(0deg 0% 100% / 25%), inset -2px -2px 2px rgb(0 0 0 / 25%);
+}
+.activities::-webkit-scrollbar-track {
+  background: linear-gradient(90deg,#434343,#434343 1px,rgba(72, 20, 121, 0.726) 0, rgba(72, 20, 121, 0.726));
+  border-radius: 2vw;
+}
+/*fin scroll horizontal*/
+/*fin activities*/
 /*fin Itineraries*/
 /*Medias*/
 @media(max-width:569px){
