@@ -5,7 +5,7 @@ import Coment from './Coment'
 const direccionHost='http://localhost:4000/api' 
 const ViewItinerary =({itinerary})=>{
   const {
-    idCity,title,userAutor,userImgAutor,
+    title,userAutor,userImgAutor,
     likes,duration,valoration,hashTags,arrayComents,_id
   } = itinerary
   const [viewMoreOrLess,setViewMoreOrLess]=useState(false)
@@ -16,7 +16,7 @@ const ViewItinerary =({itinerary})=>{
     fetch(direccionHost+'/itinerary/activities/'+id)
     .then(res => res.json())
     .then(data => setActivities(data.respuesta))
-  }, [])
+  }, [_id])
   const valorations=[1,2,3,4,5]
   return (
     <div className="itineraryView">
