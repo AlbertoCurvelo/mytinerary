@@ -31,7 +31,6 @@ const Cities = () =>{
       e.target.parentElement.querySelector('#urlNewCity').value="" 
       e.target.parentElement.querySelector('#descriptionNewCity').value=""
     }else{
-      {console.log(new)}
       <Alert setNewAlert={setNewAlert} success={res.data.success} error={res.data.error}/>
     }
   } 

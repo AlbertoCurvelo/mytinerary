@@ -511,6 +511,115 @@ footer{
   border-radius: 20vw;
 }
 /*Fin error 404*/
+/*Itineraries*/
+.itineraryView{
+  padding-bottom: 2vw;
+  margin: 2vh auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 95%;
+  min-height:35vh;
+  max-width: 900px;
+  color:white;
+  background-color:  rgba(72, 20, 121, 0.726);
+  border-radius: 2vw;
+  border: 8px inset rgba(0, 46, 61, 0.082);
+ 
+}
+.itineraryDetail{
+  padding: .5vh 1vw;
+  display: flex;
+}
+.userAutorImg{
+  margin: 2vw;
+  max-width: 15vw;
+  min-width: 15vw;
+  min-height: 15vw;
+}
+.userAutorImg>div{
+  min-height: 15vw;
+  background-repeat: no-repeat;
+  background-position:center;
+  background-size: contain;
+  border-radius: 10vw !important;
+}
+.contentItinerary{
+  padding: 2vw;
+  flex:2;
+  display:flex;
+  flex-direction: column;
+}
+.bMoreOrLess{
+  margin: auto;
+  max-width: fit-content;
+  border-radius: 25vw !important;
+}
+.activities{
+  height: 25vh;
+  max-height: 40vh;
+  max-width: 95%;  
+  background-color:rgba(184, 132, 233, 0.089);
+  border-radius: 2vw;
+  box-shadow: 0px 0px 10px 2px rgba(184, 132, 233, 0.336);
+  margin: 2vh 0; /*cambiar por auto*/
+}
+.comments{
+  margin: 2vh auto;
+  padding: 2vw;
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  background-color:rgba(184, 132, 233, 0.089);
+  border-radius: 5vw;
+  box-shadow: 0px 0px 10px 2px rgba(184, 132, 233, 0.336);
+}
+.likesAndOthers{
+  display: flex;
+  align-content: center;
+  justify-content: space-around;
+}
+.likesAndOthers i{
+  font-size: 1.4vw;
+}
+.hashtagsItinerary{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.coment{
+  padding: 1vw;
+  display: flex;
+  justify-content: space-between;
+}
+.imgUserComent{
+  width: 5vw;
+  height: 5vw;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 5vw;
+}
+.burbleComent{
+  margin: 2vw 0 0 .25vw;
+  padding: 1.25vw .75vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: #039be5;
+  border-radius:  0 2.5vw 2.5vw 2.5vw;
+}
+.burbleComent span{
+  color: #dfdfdf;
+}
+.burbleComent p>span{
+  color: rgb(99, 29, 165);
+  font-weight: bold;
+}
+/*fin Itineraries*/
 /*Medias*/
 @media(max-width:569px){
   .user{
