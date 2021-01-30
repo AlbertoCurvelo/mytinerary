@@ -1,24 +1,20 @@
+import {connect} from 'react-redux'
 import Loader from '../components/Loader'
 import NotYet from '../components/NotYet'
 import ViewItinerary from '../components/ViewItinerary'
-const { useState, useEffect } = require("react")
-const direccionHost='http://localhost:4000/api'
+import itineraryActions from '../redux/actions/itineraryActions'
+const {useEffect, useState} = require("react")
 
 const City = (props) =>{
+  const {cities,itinerariesForThisCity,getAllItinerariesOrActivitiesForId}=props
   const [city,setCity]=useState({})
-  const [itinerariesCity,setItinerariesCity]=useState([])
+  const {id}  = props.match.params
 
   useEffect(() => {
     window.scrollTo(0,0)
-    const id= props.match.params.id
-    fetch(direccionHost+'/cities/'+id)
-    .then(res => res.json())
-    .then(data => setCity(data.respuesta))
-    //opteniendo el itinerario/s
-    fetch(direccionHost+'/itineraries/city/'+id)
-    .then(res => res.json())
-    .then(data => setItinerariesCity(data.respuesta))
-  }, [props.match.params.id])
+    setCity(cities.filter(city => (city._id === id))[0])
+    getAllItinerariesOrActivitiesForId(id,'itineraries')
+  }, [id,getAllItinerariesOrActivitiesForId,cities])
 
   return(
     <section className="cityPage">
@@ -41,14 +37,14 @@ const City = (props) =>{
       <div className="seccionInfoCity">
         <h2>Itineraries from city - {city.titleCity}</h2>
         {
-           Object.entries(itinerariesCity).length
-           ?itinerariesCity.map(itinerary=>{
+           Object.entries(itinerariesForThisCity).length
+           ?itinerariesForThisCity.map((itinerary,i)=>{
             return(
               <ViewItinerary key={itinerary._id} itinerary={itinerary}/>
               )
            })
            :<NotYet msj={"Oops! We don't have itineraries yet."} redirect={true}/>
-        }
+          }
       </div>
     </div>
     :<Loader/>
@@ -56,4 +52,14 @@ const City = (props) =>{
     </section>
   )
 }
-export default City
+const mapStateToProps = state => {
+  return {
+    cities: state.cityR.cities,
+    itinerariesForThisCity: state.itineraryR.itinerariesForThisCity
+  } 
+}
+const mapDispatchToProps = {
+  getAllItinerariesOrActivitiesForId: itineraryActions.getAllItinerariesOrActivitiesForId
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(City)

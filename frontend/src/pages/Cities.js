@@ -1,16 +1,17 @@
 import {connect} from 'react-redux'
-import { useEffect} from 'react'
+import {useEffect} from 'react'
 import {TextInput} from 'react-materialize'
 import NotYet from '../components/NotYet'
 import Loader from '../components/Loader'
 import ViewCity from '../components/ViewCity'
-import citiesActions from '../redux/actions/citiesActions'
+import cityActions from '../redux/actions/cityActions'
 
 const Cities = ({getAllCities,filter,textFindUse,filterCities}) =>{
   useEffect(() => {
     window.scrollTo(0,0)
     getAllCities()
-  }, [])
+  }, [getAllCities])
+  
   return(
     <section className="cityPage"> 
       <h2>Cities</h2>
@@ -43,13 +44,13 @@ const Cities = ({getAllCities,filter,textFindUse,filterCities}) =>{
 }
 const mapStateToProps = state =>{
   return {
-    cities: state.citiesR.cities,
-    filterCities: state.citiesR.filterCities,
-    textFindUse: state.citiesR.textFindUse
+    cities: state.cityR.cities,
+    filterCities: state.cityR.filterCities,
+    textFindUse: state.cityR.textFindUse
   }
 }
 const mapDispatchToProps = {
-  getAllCities: citiesActions.getAllCities,
-  filter: citiesActions.filter
+  getAllCities: cityActions.getAllCities,
+  filter: cityActions.filter
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Cities) 

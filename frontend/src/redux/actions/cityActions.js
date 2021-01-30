@@ -1,5 +1,5 @@
 const direccionHost='http://localhost:4000/api'
-const citiesActions = {
+const cityActions = {
   getAllCities: () => {
     return async (dispatch, getState) => {
       const respuesta= await fetch(direccionHost+'/cities')
@@ -13,4 +13,4 @@ const citiesActions = {
     }
   }
 }
-export default citiesActions
+export default cityActions

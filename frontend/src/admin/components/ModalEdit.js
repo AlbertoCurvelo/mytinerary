@@ -24,7 +24,7 @@ const ModalEdit = (props) =>{
       "directionImage":document.querySelector(`#direction${_id}`).value,
       "descriptionCity":document.querySelector(`#description${_id}`).value
     })
-  }, [])
+  }, [_id])
   
   const readInput=e=>{
     const campo=e.target.name.trim()

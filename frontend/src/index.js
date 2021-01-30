@@ -10,7 +10,9 @@ const storeGeneral=createStore(rootReducer, applyMiddleware(thunk))
 
 ReactDOM.render(
   <Provider store={storeGeneral}>
-    <App />
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
   </Provider>,
   document.getElementById('root')
 );
