@@ -39,10 +39,19 @@ const City = (props) =>{
         <h2>Itineraries from city - {city.titleCity}</h2>
         {
            Object.entries(itinerariesForThisCity).length
-           ?itinerariesForThisCity.map((itinerary)=>{
+           ?itinerariesForThisCity.map((itinerary,i)=>{
+             if(i===(itinerariesForThisCity.length-1)){
             return(
-              <ViewItinerary key={itinerary._id} itinerary={itinerary}/>
-              )
+              <>
+                <ViewItinerary key={itinerary._id} itinerary={itinerary}/>
+                <NotYet msj={""} redirect={true}/>
+              </>
+              )}
+              else{
+                return(
+                  <ViewItinerary key={itinerary._id} itinerary={itinerary}/>
+                )
+              }
            })
            :<NotYet msj={"Oops! We don't have itineraries yet."} redirect={true}/>
           }
