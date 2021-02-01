@@ -9,13 +9,18 @@ const City = (props) =>{
   //Destructurado
   const {cities,itinerariesForThisCity,getAllItinerariesForId}=props
   const [city,setCity]=useState({})
+  const [loaded,setLoaded]=useState(false)
   const {id}  = props.match.params
 
   useEffect(() => {
     window.scrollTo(0,0)
-    setCity(cities.filter(city => (city._id === id))[0])
-    getAllItinerariesForId(id)
+    loading()
   }, [id,getAllItinerariesForId,cities])
+  async function loading(){
+    await setCity(cities.filter(city => (city._id === id))[0])
+    await getAllItinerariesForId(id)
+    setLoaded(true)
+  }
 
   if(Object.entries(cities).length)
  { return(
@@ -54,15 +59,13 @@ const City = (props) =>{
                 )
               }
            })
-           :
-           <>
-           <Loader/>
-           <NotYet msj={"Oops! We don't have itineraries yet."} redirect={true}/>
-           </>
+           :!loaded
+           ?<Loader/>
+           :<NotYet msj={"Oops! We don't have itineraries yet."} redirect={true}/>
           }
       </div>
     </div>
-    :<Loader/>
+    :<></>
     }
     </section>
   )}else{
