@@ -2,11 +2,11 @@ const Itinerary = require('../models/Itinerary')
 const itinerariesController = {
   //añadir itinerario
   postItinerary:(req,res)=>{
-    const {idCity,title,userAutor,userImgAutor,likes,duration,valoration,hashTags,arrayComents} = req.body
+    const {idCity,title,userAutor,userImgAutor,likes,duration,valoration,hashTags,arrayComents,arrayActivities} = req.body
     const itineraryAGuardar = new Itinerary({
       idCity, title, userAutor, userImgAutor, 
       likes, duration, valoration,
-      hashTags, arrayComents
+      hashTags, arrayComents, arrayActivities
     })
     itineraryAGuardar.save()
     .then(guardado =>{

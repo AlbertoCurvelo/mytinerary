@@ -1,5 +1,9 @@
 const mongoose = require ('mongoose')
 
+const activitySchema=new mongoose.Schema({
+  actImg:{type: String, required:true},
+  actTitle:{type: String, required:true}
+})
 const commentSchema=new mongoose.Schema({
   userName:{type:String, required:true},
   userComentImg:{type:String, required:true},
@@ -14,7 +18,8 @@ const ItinerarySchema = new mongoose.Schema({
   duration:{type: Number, required: true},
   valoration:{type: Number , required: true},
   hashTags:{type: Array , required:true},
-  arrayComents:[commentSchema]
+  arrayComents:[commentSchema],
+  arrayActivities:[activitySchema]
 })
 
 const Itinerary = mongoose.model('itinerary',ItinerarySchema)

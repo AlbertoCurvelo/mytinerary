@@ -1,25 +1,17 @@
-import {connect} from 'react-redux'
 import {Button, TextInput} from 'react-materialize';
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Coment from './Coment'
-import itineraryActions from '../redux/actions/itineraryActions'
 import Loader from './Loader'
 
-const ViewItinerary =({itinerary,getAllItinerariesOrActivitiesForId,activitiesForThisItinerary})=>{
+const ViewItinerary =({itinerary})=>{
   //parametros recibidos del padre
   const {
     title,userAutor,userImgAutor,
-    likes,duration,valoration,hashTags,arrayComents,_id
+    likes,duration,valoration,hashTags,arrayComents,arrayActivities,_id
   } = itinerary
-  //variables d eestado del componente
+  //variables de estado del componente
   const [viewMoreOrLess,setViewMoreOrLess]=useState(false)
   const valorations=[1,2,3,4,5]
-  const idItineraryPadre=_id
-  const activities=[{}]
-  
-  useEffect(() => {
-    getAllItinerariesOrActivitiesForId(idItineraryPadre,'activities')
-  }, [viewMoreOrLess])
 
   return (
     <div className="itineraryView">
@@ -38,50 +30,42 @@ const ViewItinerary =({itinerary,getAllItinerariesOrActivitiesForId,activitiesFo
               <span>{
                 valorations.map((value,i)=>{
                   if(i<valoration){
-                    return (<i className="material-icons green-text">monetization_on</i>)
+                    return (<i key={_id+value} className="material-icons green-text">monetization_on</i>)
                   }else{
-                    return (<i className="material-icons grey-text">monetization_on</i>)
+                    return (<i key={_id+value}  className="material-icons grey-text">monetization_on</i>)
                   }
                 })
               }
               </span>
             </div>
           <div className="hashtagsItinerary">
-            {hashTags.map(hashTag=>{
+            {hashTags.map((hashTag,i)=>{
               return (
-                <span key={hashTag._id}>{hashTag}</span>
+                <span key={'ht'+i}>{hashTag}</span>
               )
             }
             )}
             </div>
         </div>
       </div>
-      {/*
-      favorite_border   
-      monetization_on
-      */}
-      
         {viewMoreOrLess
         ?<>
         {
-        Object.entries(activitiesForThisItinerary).length !== 0
-          ?<div className="activities">
+        Object.entries(arrayActivities).length !== 0
+          ?
+          <div className="activities">
             {
-            activitiesForThisItinerary.map(({actImg,actTitle,_id,idItinerary})=>{
-              if(idItineraryPadre===idItinerary)
-              {return (
-                <div key={'act'+_id} style={{backgroundImage:`url(${actImg})`}} className="activity">
-                  <p><span>{actTitle}</span></p>
-                </div>
-              )}else{
-                return <Loader/>
-              }
-            })
-          }
+              arrayActivities.map(({actImg,actTitle,_id})=>{
+                return (
+                  <div key={'act'+_id} style={{backgroundImage:`url(${actImg})`}} className="activity">
+                    <p><span>{actTitle}</span></p>
+                  </div>
+                )
+              })
+            }
           </div>
-          :<></>
+          :<><Loader/></>
         }
-        
         <div className="comments">
           {
           arrayComents.map((coment,i)=>{
@@ -100,7 +84,6 @@ const ViewItinerary =({itinerary,getAllItinerariesOrActivitiesForId,activitiesFo
               <i className="material-icons red-text">send</i>
             </div>
           </div>
-          
         </div>
         </>
         :<></>
@@ -110,19 +93,11 @@ const ViewItinerary =({itinerary,getAllItinerariesOrActivitiesForId,activitiesFo
           onClick={()=>setViewMoreOrLess(!viewMoreOrLess)}
           waves="light"
           className="bMoreOrLess"
+          id={"moreOrLess"+_id}
         >
           Read {viewMoreOrLess ? "less" : "more"}
         </Button>
     </div>
   )
 }
-const mapStateToProps= state =>{
-  return {
-    activitiesForThisItinerary:state.itineraryR.activitiesForThisItinerary
-  }
-}
-const mapDispatchToProps = {
-  getAllItinerariesOrActivitiesForId:itineraryActions.getAllItinerariesOrActivitiesForId
-}
-
-export default connect(mapStateToProps,mapDispatchToProps)(ViewItinerary)
+export default ViewItinerary

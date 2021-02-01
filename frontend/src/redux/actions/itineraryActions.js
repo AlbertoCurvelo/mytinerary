@@ -1,12 +1,10 @@
 const direccionHost='http://localhost:4000/api'
 const itineraryActions = {
-  getAllItinerariesOrActivitiesForId: (id,activitiesOrItineraries) => {
+  getAllItinerariesForId: (id) => {
     return async (dispatch, getState) => {
-      const rutaBackend= activitiesOrItineraries === 'itineraries' ?'/itineraries/city/' :'/itinerary/activities/'
-      const typeForDispatch= activitiesOrItineraries === 'itineraries' ?"LOAD_ITINERARIES_FOR_THIS_CITY" :"LOAD_ACTIVITIES_FOR_THIS_ITINERARY"
-      const respuesta= await fetch(direccionHost+rutaBackend+id)
+      const respuesta= await fetch(direccionHost+'/itineraries/city/'+id)
       const data= await respuesta.json()
-      dispatch({type: typeForDispatch, payload: data.respuesta})
+      dispatch({type: "LOAD_ITINERARIES_FOR_THIS_CITY", payload: data.respuesta})
     }
   }
 }

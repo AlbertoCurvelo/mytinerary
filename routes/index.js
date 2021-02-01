@@ -2,7 +2,6 @@ const express=require('express')
 const router=express.Router()
 const citiesController=require('../controllers/citiesController')
 const itinerariesController=require('../controllers/itinerariesController')
-const activitiesController=require('../controllers/activitiesController')
 //Se definen las rutas de consulta
 router.route('/cities')
 .get(citiesController.allCities)
@@ -19,12 +18,6 @@ router.route('/itineraries/:id')
 
 router.route('/itineraries/city/:id')
 .get(itinerariesController.itinerariesForCity)
-
-router.route('/itinerary/activities')
-.post(activitiesController.postActivity)
-
-router.route('/itinerary/activities/:id')
-.get(activitiesController.getActivitiesForItinerary)
 
 router.route('/admin/cities/:id')
 .post(citiesController.postCity)

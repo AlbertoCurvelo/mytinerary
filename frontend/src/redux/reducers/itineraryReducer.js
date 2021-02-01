@@ -1,6 +1,5 @@
 const initialState = {
-  itinerariesForThisCity:[],
-  activitiesForThisItinerary:[]
+  itinerariesForThisCity:[]
 }
 export function itineraryReducer(state=initialState,action){
   switch (action.type) {
@@ -8,11 +7,6 @@ export function itineraryReducer(state=initialState,action){
       return{
         ...state,
         itinerariesForThisCity:action.payload
-      }
-    case 'LOAD_ACTIVITIES_FOR_THIS_ITINERARY':
-      return {
-        ...state,
-        activitiesForThisItinerary:action.payload
       }
     default: return state
   }

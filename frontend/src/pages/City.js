@@ -6,15 +6,16 @@ import itineraryActions from '../redux/actions/itineraryActions'
 const {useEffect, useState} = require("react")
 
 const City = (props) =>{
-  const {cities,itinerariesForThisCity,getAllItinerariesOrActivitiesForId}=props
+  //Destructurado
+  const {cities,itinerariesForThisCity,getAllItinerariesForId}=props
   const [city,setCity]=useState({})
   const {id}  = props.match.params
 
   useEffect(() => {
     window.scrollTo(0,0)
     setCity(cities.filter(city => (city._id === id))[0])
-    getAllItinerariesOrActivitiesForId(id,'itineraries')
-  }, [id,getAllItinerariesOrActivitiesForId,cities])
+    getAllItinerariesForId(id)
+  }, [id,getAllItinerariesForId,cities])
 
   return(
     <section className="cityPage">
@@ -38,7 +39,7 @@ const City = (props) =>{
         <h2>Itineraries from city - {city.titleCity}</h2>
         {
            Object.entries(itinerariesForThisCity).length
-           ?itinerariesForThisCity.map((itinerary,i)=>{
+           ?itinerariesForThisCity.map((itinerary)=>{
             return(
               <ViewItinerary key={itinerary._id} itinerary={itinerary}/>
               )
@@ -59,7 +60,7 @@ const mapStateToProps = state => {
   } 
 }
 const mapDispatchToProps = {
-  getAllItinerariesOrActivitiesForId: itineraryActions.getAllItinerariesOrActivitiesForId
+  getAllItinerariesForId: itineraryActions.getAllItinerariesForId
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(City)
