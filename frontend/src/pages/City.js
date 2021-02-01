@@ -1,18 +1,21 @@
+import {connect} from 'react-redux'
 import Loader from '../components/Loader'
 import NotYet from '../components/NotYet'
-const { useState, useEffect } = require("react")
-const direccionHost='http://localhost:4000/api'
+import ViewItinerary from '../components/ViewItinerary'
+import itineraryActions from '../redux/actions/itineraryActions'
+const {useEffect, useState} = require("react")
 
 const City = (props) =>{
+  //Destructurado
+  const {cities,itinerariesForThisCity,getAllItinerariesForId}=props
   const [city,setCity]=useState({})
+  const {id}  = props.match.params
 
   useEffect(() => {
     window.scrollTo(0,0)
-    const id= props.match.params.id
-    fetch(direccionHost+'/cities/'+id)
-    .then(res => res.json())
-    .then(data => setCity(data.respuesta))
-  }, [props.match.params.id])
+    setCity(cities.filter(city => (city._id === id))[0])
+    getAllItinerariesForId(id)
+  }, [id,getAllItinerariesForId,cities])
 
   return(
     <section className="cityPage">
@@ -34,7 +37,15 @@ const City = (props) =>{
       </div>
       <div className="seccionInfoCity">
         <h2>Itineraries from city - {city.titleCity}</h2>
-        <NotYet msj={"Oops! We don't have itineraries yet."} redirect={true}/>
+        {
+           Object.entries(itinerariesForThisCity).length
+           ?itinerariesForThisCity.map((itinerary)=>{
+            return(
+              <ViewItinerary key={itinerary._id} itinerary={itinerary}/>
+              )
+           })
+           :<NotYet msj={"Oops! We don't have itineraries yet."} redirect={true}/>
+          }
       </div>
     </div>
     :<Loader/>
@@ -42,4 +53,14 @@ const City = (props) =>{
     </section>
   )
 }
-export default City
+const mapStateToProps = state => {
+  return {
+    cities: state.cityR.cities,
+    itinerariesForThisCity: state.itineraryR.itinerariesForThisCity
+  } 
+}
+const mapDispatchToProps = {
+  getAllItinerariesForId: itineraryActions.getAllItinerariesForId
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(City)

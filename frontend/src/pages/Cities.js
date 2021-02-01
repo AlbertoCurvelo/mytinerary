@@ -1,41 +1,16 @@
-import { useEffect, useState } from 'react'
+import {connect} from 'react-redux'
+import {useEffect} from 'react'
 import {TextInput} from 'react-materialize'
 import NotYet from '../components/NotYet'
 import Loader from '../components/Loader'
 import ViewCity from '../components/ViewCity'
+import cityActions from '../redux/actions/cityActions'
 
-const direccionHost='http://localhost:4000/api'
-
-const Cities = () =>{
-  const [cities,setCities]=useState([])
-  const [filterCities,setFilterCities]=useState([])
-  const [textFindUse, setTextFindUse]=useState(false)
-
+const Cities = ({getAllCities,filter,textFindUse,filterCities}) =>{
   useEffect(() => {
     window.scrollTo(0,0)
-    fetch(direccionHost+'/cities')
-    .then(res=>res.json())
-    .then(data=>{
-      // Guardo las cities en mi array para usar en el filtro y tambien en el filtrado
-      // Para que al ingresar por primera vez se muestren las ciudades, 
-      // ya que mapeo siempre el filtrado
-      setCities(data.respuesta)
-      setFilterCities(data.respuesta)
-    })
-  }, [])
-
-  /*Por cada cambio en el input, tomo el valor del input, aplico un filter 
-  por nombre de la ciudad y retorno a guardarla en una variable de estado, 
-  por lo que renderiza */
-  const filter = e =>{
-    setTextFindUse(true)
-    //Separa las tildes de los caracteres acentuados los elimina y los remplaza con ''
-    const textFindCities=e.target.value.normalize("NFD").replace(/[\u0300-\u036f]/g, '')
-    setFilterCities(cities.filter(({titleCity})=>{
-      return titleCity.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, '').indexOf(textFindCities.toLowerCase().trim()) === 0
-    }))
-  }
-  
+    getAllCities()
+  }, [getAllCities])
   
   return(
     <section className="cityPage"> 
@@ -48,7 +23,7 @@ const Cities = () =>{
           label="Type here for search"
           onChange={filter}
         /> 
-      </div>  
+      </div>
       <div className="viewCities">
         {
         Object.entries(filterCities).length !== 0
@@ -67,4 +42,15 @@ const Cities = () =>{
     </section>
   )
 }
-export default Cities 
+const mapStateToProps = state =>{
+  return {
+    cities: state.cityR.cities,
+    filterCities: state.cityR.filterCities,
+    textFindUse: state.cityR.textFindUse
+  }
+}
+const mapDispatchToProps = {
+  getAllCities: cityActions.getAllCities,
+  filter: cityActions.filter
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Cities) 

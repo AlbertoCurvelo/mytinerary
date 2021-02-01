@@ -10,11 +10,12 @@ const ModalEdit = (props) =>{
   const editCity=async (e) =>{
     e.preventDefault();
     const res= await axios.put(`http://localhost:4000/api/admin/cities/${e.target.value}`, {newCity:newCity})
+    console.log(res.data)
     if(res.data.success){
       <Alert setNewAlert={setNewAlert} success={res.data.success}/>
       /*setRefresh(!refresh)*/
     }else{
-      <Alert setNewAlert={setNewAlert} success={res.data.success}/>
+      <Alert setNewAlert={setNewAlert} success={res.data.success} error={res.data.error}/>
     }
   }
   useEffect(() => {
@@ -23,7 +24,7 @@ const ModalEdit = (props) =>{
       "directionImage":document.querySelector(`#direction${_id}`).value,
       "descriptionCity":document.querySelector(`#description${_id}`).value
     })
-  }, [])
+  }, [_id])
   
   const readInput=e=>{
     const campo=e.target.name.trim()
@@ -100,8 +101,7 @@ const ModalEdit = (props) =>{
             xl={12}
             onChange={readInput}
           />
-        </div>
-        {
+          {
           Object.entries(newAlert).length !== 0
           ?<div className="resAlert">
             <div className={`materialert ${newAlert.typeAlert}`}>
@@ -111,6 +111,7 @@ const ModalEdit = (props) =>{
           </div>
           :<></>
         }
+        </div>
     </Modal>
   )
 }

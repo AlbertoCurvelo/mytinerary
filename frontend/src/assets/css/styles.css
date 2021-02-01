@@ -401,9 +401,6 @@ footer{
   background-color: rgba(72, 20, 121, 0.685);
   border-radius: 2vw;
 }
-.allCity>.cityView{
-  flex: 2 0 60vw;
-}
 .allCity>.cityView:hover{
   transform: scale(1);
   cursor: default;
@@ -450,7 +447,6 @@ footer{
 .seccionInfoCity h2{
   color:rgb(224, 132, 26);
   text-shadow: .2vw .2vw rgba(255, 255, 255); 
-  font-size: 2.5vw;
   margin: 0;
   background-color: rgba(241, 241, 241, 0.123);
   padding: .5vw 0;
@@ -511,6 +507,172 @@ footer{
   border-radius: 20vw;
 }
 /*Fin error 404*/
+/*Itineraries*/
+.itineraryView{
+  padding-bottom: 2vw;
+  margin: 2vh auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 95%;
+  min-height:35vh;
+  max-width: 900px;
+  color:white;
+  background-color:  rgba(72, 20, 121, 0.726);
+  border-radius: 2vw;
+  border: 8px inset rgba(0, 46, 61, 0.082);
+ 
+}
+.itineraryDetail{
+  padding: .5vh 1vw;
+  display: flex;
+}
+.userAutorImg{
+  margin: 2vw;
+  max-width: 15vw
+}
+.userAutorImg>div{
+  background-repeat: no-repeat;
+  background-position:center;
+  background-size: cover;
+  border-radius: 10vw !important;
+}
+.contentItinerary{
+  padding: 2vw;
+  flex:2;
+  display:flex;
+  flex-direction: column;
+}
+.bMoreOrLess{
+  margin: auto;
+  max-width: fit-content;
+  border-radius: 25vw !important;
+}
+.comments{
+  margin: 2vh auto;
+  padding: 2vw;
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  background-color:rgba(184, 132, 233, 0.089);
+  border-radius: 5vw;
+  box-shadow: 0px 0px 10px 2px rgba(184, 132, 233, 0.336);
+}
+.likesAndOthers{
+  display: flex;
+  align-content: center;
+  justify-content: space-around;
+}
+.hashtagsItinerary{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.coment{
+  display: flex;
+  justify-content: space-between;
+}
+.imgUserComent{
+  width: 5vw;
+  height: 5vw;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 5vw;
+}
+.burbleComent{
+  margin: 2vw 0 0 .25vw;
+  padding: 1.25vw .75vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: #039be5;
+  border-radius:  0 2.5vw 2.5vw 2.5vw;
+}
+.burbleComent span{
+  color: #dfdfdf;
+}
+.burbleComent p>span{
+  color: rgb(99, 29, 165);
+  font-weight: bold;
+}
+.inputComent{
+  margin: 2vw auto 0 auto;
+}
+.inputComent>div{
+  max-width: 90%;
+  max-height: 5vh;
+  display: flex;
+  justify-content:space-around;
+  align-items: center;
+  border-radius: 5vw;
+  background-color: rgba(99, 29, 165, 0.158); 
+  box-shadow: 0px 0px 10px 4px rgba(184, 132, 233, 0.336);
+}
+#inputComent{
+  border-bottom:0 !important;
+  margin: .1vw 0 0 2vw;
+}
+.inputComent i{
+  padding-right: 1vw;
+}
+.inputComent label, .inputComent input, .inputComent i{
+  color:white !important
+}
+/*activities*/
+.activities{
+  width: 95%;  
+  border-radius: 2vw;
+  background-color:rgba(184, 132, 233, 0.089);
+  box-shadow: 0px 0px 10px 2px rgba(184, 132, 233, 0.336);
+  margin: 2vh auto;
+  white-space: nowrap;
+  overflow-x: scroll;
+}
+.activity{
+  margin: 1vw;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 1vw !important;
+  display: inline-block;
+}
+.activity p{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+}
+.activity p span{
+  font-family: 'Yellowtail', cursive;
+  font-weight: bold;
+  font-size: 1.6vw;
+  width: 100%;
+  background-color: rgba(72, 20, 121, 0.726);
+  border-radius: 0 0 1vw 1vw;
+  letter-spacing: .125vw;
+}
+/*Scroll horizontal*/
+.activities::-webkit-scrollbar {
+  width: 10px;
+  height: 15px;
+}
+.activities::-webkit-scrollbar-thumb {
+  background:  rgba(72, 20, 121, 0.993);
+  border-radius: 10px;
+  box-shadow: inset 2px 2px 2px hsl(0deg 0% 100% / 25%), inset -2px -2px 2px rgb(0 0 0 / 25%);
+}
+.activities::-webkit-scrollbar-track {
+  background: linear-gradient(90deg,#434343,#434343 1px,rgba(72, 20, 121, 0.726) 0, rgba(72, 20, 121, 0.726));
+  border-radius: 2vw;
+}
+/*fin scroll horizontal*/
+/*fin activities*/
+/*fin Itineraries*/
 /*Medias*/
 @media(max-width:569px){
   .user{
@@ -565,6 +727,23 @@ footer{
   .viewInfoUser p{
    font-size: 3.5vw;
   }
+  .likesAndOthers i{
+    font-size: 2.8vw;
+  }
+  .userAutorImg>div{
+    height: 15vw;
+    width: 15vw;
+  }
+  .activity{
+    width: 20vw;
+    height: 20vw;
+  }
+  .seccionInfoCity h2{
+    font-size: 5vw;
+  }
+  .allCity>.cityView{
+    flex: 2 0 40vw;
+  }
 }
 @media (min-width:570px) and (max-width:677px){
   .user{
@@ -605,13 +784,30 @@ footer{
   }
   .input-field label{
     font-size: 2.8vw !important;
-    }
-    .descriptionCity {
-      font-size: 1.8vw;
-    }
-    .viewInfoUser p{
-     font-size: 2.8vw;
-    }
+  }
+  .descriptionCity {
+    font-size: 1.8vw;
+  }
+  .viewInfoUser p{
+    font-size: 2.8vw;
+  }
+  .likesAndOthers i{
+    font-size: 2.5vw;
+  }
+  .userAutorImg>div{
+    height: 15vw;
+    width: 15vw;
+  }
+  .activity{
+    width: 20vw;
+    height: 20vw;
+  }
+  .seccionInfoCity h2{
+    font-size: 4vw;
+  }
+  .allCity>.cityView{
+    flex: 2 0 40vw;
+  }
 }
 @media (min-width:678px) and (max-width:1048px){
   .user{
@@ -658,6 +854,23 @@ footer{
   .viewInfoUser p{
     font-size: 2.5vw;
   }
+  .likesAndOthers i{
+    font-size: 2.2vw;
+  }
+  .userAutorImg>div{
+    height: 14vw;
+    width: 14vw;
+  }
+  .activity{
+    width: 18vw;
+    height: 18vw;
+  }
+  .seccionInfoCity h2{
+    font-size: 4vw;
+  }
+  .allCity>.cityView{
+    flex: 2 0 50vw;
+  }
 }
 @media (min-width:1049px) and (max-width:1350px){
   .user{
@@ -697,6 +910,24 @@ footer{
   .input-field label{
     font-size: 1.8vw !important;
     }
+  .likesAndOthers i{
+    font-size: 1.4vw;
+  }
+  .userAutorImg>div{
+    height: 12vw;
+    width: 12vw;
+  }
+  .activity{
+    width: 15vw;
+    height: 15vw;
+  }
+  .seccionInfoCity h2{
+    font-size: 2.5vw;
+  }
+  .allCity>.cityView{
+    flex: 2 0 60vw;
+    background-position: 100% 30%;
+  }
 }
 @media (min-width:1351px){
   .user{
@@ -733,6 +964,24 @@ footer{
   }
   .input-field label{
     font-size: 1.5vw !important;
+  }
+  .likesAndOthers i{
+    font-size: 1.4vw;
+  }
+  .userAutorImg>div{
+    height: 10vw;
+    width: 10vw;
+  }
+  .activity{
+    width: 15vw;
+    height: 15vw;
+  }
+  .seccionInfoCity h2{
+    font-size: 2.5vw;
+  }
+  .allCity>.cityView{
+    flex: 2 0 50vw;
+    background-position: 100% 30%;
   }
 }
 /*fin medias*/
