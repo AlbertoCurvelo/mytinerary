@@ -17,7 +17,8 @@ const City = (props) =>{
     getAllItinerariesForId(id)
   }, [id,getAllItinerariesForId,cities])
 
-  return(
+  if(Object.entries(cities).length)
+ { return(
     <section className="cityPage">
     {
     Object.entries(city).length !== 0
@@ -40,27 +41,34 @@ const City = (props) =>{
         {
            Object.entries(itinerariesForThisCity).length
            ?itinerariesForThisCity.map((itinerary,i)=>{
-             if(i===(itinerariesForThisCity.length-1)){
-            return(
-              <>
+              if(i!==(itinerariesForThisCity.length-1))
+              {return(
                 <ViewItinerary key={itinerary._id} itinerary={itinerary}/>
-                <NotYet msj={""} redirect={true}/>
-              </>
               )}
               else{
-                return(
-                  <ViewItinerary key={itinerary._id} itinerary={itinerary}/>
+                return (
+                  <>
+                    <ViewItinerary key={itinerary._id} itinerary={itinerary}/>
+                    <NotYet msj={""} redirect={true}/>
+                  </>
                 )
               }
            })
-           :<NotYet msj={"Oops! We don't have itineraries yet."} redirect={true}/>
+           :
+           <>
+           <Loader/>
+           <NotYet msj={"Oops! We don't have itineraries yet."} redirect={true}/>
+           </>
           }
       </div>
     </div>
     :<Loader/>
     }
     </section>
-  )
+  )}else{
+    props.history.push('/cities')
+    return (<></>)
+  }
 }
 const mapStateToProps = state => {
   return {
