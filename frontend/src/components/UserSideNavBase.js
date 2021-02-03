@@ -1,57 +1,47 @@
-import {SideNav,SideNavItem,TextInput,Button} from 'react-materialize' 
+import {SideNav,SideNavItem,TextInput,Button} from 'react-materialize'
+import {useState} from 'react' 
+import Login from './Login'
+import Register from './Register'
+import {Link} from 'react-router-dom'
+import e from 'cors'
+
 const UserSideNav = () =>{
-  
+  const [loginOrRegister,setLoginOrRegister]=useState(false)
   return (
     <SideNav
     id="SideNav-10"
     className="userSideNav"
     options={{
-      draggable: true
+      draggable: false,
+      edge: 'left',
+      preventScrolling:true,
+      closeOnClick:false
     }}
     trigger={<div node="button" className="user imagenes nav"></div>}
     >
-    <SideNavItem 
-        className="liUserNav"
-        user={{
-          background: require(`../assets/img/fondoDefault.webp`).default,
-          email: '',
-          image: require(`../assets/img/logoUser.png`).default,
-          name: ''
-        }}
-        userView/>
-    <SideNavItem divider />
-    <div className="loginUser">
-      <div className="socialNetwork">
-        <p>Login from a social network</p>
-        <div className="iconosRedes">
-          <div className="googleIcon"></div>
-        </div>
-        <p>Or login with your credentials.</p>
-      </div>
-      <TextInput
-      id="userName"
-      label="Username"
-      validate
-        />
-      <TextInput
-        className="userPassword"
-        id="userPassword"
-        label="Password"
-        password
-      />
-      <Button
-        style={{
-          marginRight: '5px'
-        }}
-        waves="light"
-        /*onClick={() => {setEspera(true)
-        setValidar(!validar)}}*/
-        className="bLogin modal-trigger"
-        id="#bLogin"
-      >
-        sign in
-      </Button>
-    </div>
+      <SideNavItem 
+          className="liUserNav"
+          user={{
+            background: require(`../assets/img/fondoDefault.webp`).default,
+            email: '',
+            image: require(`../assets/img/logoUser.png`).default,
+            name: ''
+          }}
+          userView/>
+      <SideNavItem divider />
+        {
+          loginOrRegister
+          ?<Register/>
+          :<Login/>
+        }
+      <SideNavItem>
+        <Link to="#" className="loginOnRegister" onClick={(e)=>{
+          e.preventDefault()
+          e.stopPropagation()
+          setLoginOrRegister(!loginOrRegister)}}
+        >or {!loginOrRegister ? 'create an account' : 'login'}
+        </Link>
+      </SideNavItem>
     </SideNav>
   )
 }

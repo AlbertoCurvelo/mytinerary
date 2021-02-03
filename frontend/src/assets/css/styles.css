@@ -122,6 +122,26 @@ nav a{
   background-color: rgb(0, 135, 180);
   box-shadow: 20px 20px 20px rgb(0, 46, 61);
   transition: 1s ease;
+  margin-left: .5vw;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.view2{
+  display: block; opacity: 1;
+}
+.view{
+  transform: translateX(0%);
+}
+.overflow{
+  overflow: hidden
+}
+.loginOnRegister{
+  margin: 0 auto;
+  color: #1be925;
+  font-weight: bold;
+  cursor: pointer;
 }
 .iconosRedes{
   min-width: 80%;
@@ -166,13 +186,14 @@ nav a{
 }
 .loginUser{
   color: white;
-  padding: 1vw;
+  padding: 2vw;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
 }
 .loginUser label,.loginUser input{
     color: white !important;
+    max-width: 20vw;
 }
 .socialNetwork{
   text-align: center;
@@ -189,6 +210,33 @@ nav a{
 }
 nav .input-field,nav .input-field input{
   margin-top: 1vh !important;
+}
+.registerForm{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2vw 4vw;
+}
+.registerForm input{
+  max-width: 60% !important;
+}
+.select-wrapper{
+  max-width: 70%;
+  max-height: 10vh;
+}
+.select-wrapper ul{
+  overflow-y: visible;
+}
+.registerForm .select-dropdown, .registerForm .select-dropdown li span{
+  color: white !important;
+  background-color: rgb(32, 143, 143);
+  transform: scale(1);
+}
+.select-dropdown li span:hover{
+  background-color: rgb(24, 109, 109);
+}
+.selectContry{
+  overflow-y: scroll !important;
 }
 /*fin login User*/
 /*Fin header*/
