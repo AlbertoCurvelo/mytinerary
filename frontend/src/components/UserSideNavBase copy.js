@@ -2,15 +2,15 @@ import {SideNav,SideNavItem,TextInput,Button} from 'react-materialize'
 import {useState} from 'react' 
 import Login from './Login'
 import Register from './Register'
-import {Link} from 'react-router-dom'
 import e from 'cors'
+import M from 'materialize-css'
 
 const UserSideNav = () =>{
   const [loginOrRegister,setLoginOrRegister]=useState(false)
   return (
     <SideNav
     id="SideNav-10"
-    className="userSideNav"
+    className="fixed userSideNav"
     options={{
       draggable: false,
       edge: 'left',
@@ -34,14 +34,14 @@ const UserSideNav = () =>{
           ?<Register/>
           :<Login/>
         }
-      <SideNavItem>
-        <Link to="#" className="loginOnRegister" onClick={(e)=>{
+        <p node="button" onClick={(e)=>{
           e.preventDefault()
           e.stopPropagation()
-          setLoginOrRegister(!loginOrRegister)}}
+          setLoginOrRegister(!loginOrRegister)
+          M.Sidenav.getInstance(document.querySelector('.sidenav')).open()
+      }}
         >or {!loginOrRegister ? 'create an account' : 'login'}
-        </Link>
-      </SideNavItem>
+        </p> 
     </SideNav>
   )
 }

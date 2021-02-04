@@ -18,31 +18,31 @@ const Register = () =>{
       <TextInput
         name="firtName"
         id="firtName"
-        placeholder="First Name"
+        label="First Name"
         onChange={readInput}
       />
       <TextInput
         name="lastName"
         id="lastName"
-        placeholder="Last Name"
+        label="Last Name"
         onChange={readInput}
       />
       <TextInput
         name="username"
         id="username"
-        placeholder="username"
+        label="UserName"
         onChange={readInput}
       />
       <TextInput
         name="mail"
         id="mail"
-        placeholder="Email"
+        label="Email"
         onChange={readInput}
       />
       <TextInput
         name="urlPic"
         id="urlPic"
-        placeholder="url Pic"
+        label="Url Pic"
         onChange={readInput}
       />
       <Select
@@ -79,7 +79,7 @@ const Register = () =>{
       <TextInput
         name="password"
         id="password"
-        placeholder="Password"
+        label="Password"
         onChange={readInput}
       />
       <Button
