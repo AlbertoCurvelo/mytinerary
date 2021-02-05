@@ -26,9 +26,11 @@ router.route('/user')
 router.route('/user/:id')
 .get(userController.singleUser)
 
-
 router.route('/users')
 .get(userController.allUsers)
+
+router.route('/user/signin')
+.post(userController.signIn)
 
 router.route('/admin/cities/:id')
 .post(citiesController.postCity)

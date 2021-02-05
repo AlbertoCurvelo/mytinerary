@@ -5,8 +5,8 @@ import {authReducer} from './authReducer'
 
 const rootReducer = combineReducers({
   cityR:cityReducer,
-  itineraryR:itineraryReducer,
-  authR:authReducer
+  authR:authReducer,
+  itineraryR:itineraryReducer
 })
 
 export default rootReducer

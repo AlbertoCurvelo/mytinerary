@@ -1,19 +1,18 @@
 import React, {Component} from 'react'
 import '../../node_modules/rsuite/dist/styles/rsuite-default.css';
-import { Drawer, ButtonToolbar, Button, IconButton, Icon } from 'rsuite';
-import Login from './Login'
-import Register from './Register'
+import { Drawer, ButtonToolbar, Button } from 'rsuite';
 import UserLoged from './UserLoged'
-const imgFondo=require(`../assets/img/fondoDefault.webp`).default
+import MenuUserOptions from './MenuUserOptions';
   
 class SideLoginOrRegister extends Component{
   state = { 
-    loginOrRegister:false
+    imgFondo:""
   }
   constructor(props) {
     super(props);
     this.state = {
-      show: false
+      show: false,
+      imgFondo:require(`../assets/img/fondoDefault.webp`).default,
     };
     this.close = this.close.bind(this);
     this.toggleDrawer = this.toggleDrawer.bind(this);
@@ -29,7 +28,6 @@ class SideLoginOrRegister extends Component{
       show: true
     });
   }
-  
   render() {
     return (
       <div>
@@ -44,22 +42,12 @@ class SideLoginOrRegister extends Component{
           size='xs'
         >
           <Drawer.Header style={{
-            backgroundImage:`url(${imgFondo})`
+            backgroundImage:`url(${this.state.imgFondo})`
           }} className="userLoged">
             <UserLoged/>
           </Drawer.Header>
           <Drawer.Body>
-          <h5>{this.state.loginOrRegister ? 'Create an account' : 'Login'}</h5> 
-          {
-            this.state.loginOrRegister
-            ?<Register/>
-            :<Login/>
-          }
-          <p className="loginOrNot" node="button" onClick={(e)=>{
-            this.setState({loginOrRegister:!this.state.loginOrRegister})
-            }}
-            >or {!this.state.loginOrRegister ? 'create an account' : 'login'}
-          </p> 
+            <MenuUserOptions closeDrawer={this.close}/>
           </Drawer.Body>
           <Drawer.Footer>
             <Button onClick={this.close} appearance="primary">

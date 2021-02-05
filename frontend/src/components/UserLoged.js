@@ -1,17 +1,34 @@
-const UserLoged = () =>{
-  const imgUser=require(`../assets/img/logoUser.png`).default
+import {connect} from 'react-redux'
+import { useEffect,useState } from 'react'
+
+const UserLoged = (props) =>{
+  const [userInfo,setUserInfo]=useState(props.userlogged)
+  useEffect(() => {
+    console.log(props)
+    setUserInfo(props.userlogged)
+  }, [props.userlogged])
   /*falta recibir si alguien esta logueado y poner sus datos*/ 
   return (
     <>
       <div style={{
-        backgroundImage:`url(${imgUser})`
+        backgroundImage:`url(${userInfo.urlPic})`
       }} className="userImg">
       </div>
       <div className="userLogedData">
-        <p>Name:</p>
-        <p>Email:</p>
+      {userInfo.firtsName!==""
+      ?<>
+        <p>{userInfo.firtsName+" "+userInfo.lastName}</p>
+        <p>{userInfo.mail}</p>
+      </>
+      :<></>
+      }
       </div>
     </>
   )
 }
-export default UserLoged
+const mapStateToProps = state =>{
+  return {
+    userlogged:state.authR.loggedUser
+  }
+}
+export default connect(mapStateToProps,null)(UserLoged)

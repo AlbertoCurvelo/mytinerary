@@ -1,5 +1,6 @@
 const User = require('../models/User')
 const bcryptjs = require('bcryptjs')
+const jwt = require('jsonwebtoken')
 
 const userController = {
   //Añadir usuario
@@ -8,7 +9,7 @@ const userController = {
     const passwordHasheado = bcryptjs.hashSync(password, 10)
     const userSave = new User({
       firtsName,lastName,userName,
-      mail,urlPic,contry,password:passwordHasheado,typeAccount
+      mail,urlPic,contry,password:passwordHasheado,typeAccount,whereAccount
     })
     userSave.save()
     .then(guardoUser =>{
@@ -66,6 +67,7 @@ const userController = {
   },
   signIn: async (req, res) => {
     const {username, password} = req.body
+    console.log(req.body)
     const userExists = await User.findOne({username: username})
     if (!userExists) {
         return res.json({success: false, mensaje: 'Nombre de usuario y/o contraseña incorrectos.'})
@@ -74,8 +76,17 @@ const userController = {
     if (!passwordMatches) {
         return res.json({success: false, mensaje: 'Nombre de usuario y/o contraseña incorrectos.'})
     }
+    var token = jwt.sign({...userExists}, process.env.SECRET_KEY, {})
+    return res.json({success: true, response:{
+        token, 
+        firtsName:userExists.firtsName,
+        urlPic:userExists.urlPic,
+        lastName:userExists.lastName,
+        whereAccount:userExists.whereAccount,
+        mail:userExists.mail
 
-    return res.json({success: true, response: userExists})
+      } 
+    })
   }
 }
 //fin citiesController

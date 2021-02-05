@@ -1,10 +1,11 @@
+import {connect} from 'react-redux'
 import {TextInput,Button} from 'react-materialize'
 import {useState} from 'react'
+import authActions from '../redux/actions/authActions'
 
 const Login = (props) =>{
   const [userLogin, setUserLogin] = useState({})
   const [errores, setErrores] = useState([])
-  
   const leerInput = e => {
     const valor = e.target.value
     const campo = e.target.name
@@ -15,7 +16,7 @@ const Login = (props) =>{
   }
   const validUser = async e => {
     e.preventDefault()
-    if (userLogin.username === '' || userLogin.password === '') {
+    if (userLogin.username === "" || userLogin.password === "") {
         alert("Todos los campos son obligatorios")
         return false
     }
@@ -24,10 +25,9 @@ const Login = (props) =>{
     if (respuesta && !respuesta.success) {
         setErrores([respuesta.mensaje])
     } else {
-        alert("Bienvenido!")
+        props.closeDrawer()
     }
   }
-
   return (
     <div className="loginUser">
       <div className="socialNetwork">
@@ -39,6 +39,7 @@ const Login = (props) =>{
       </div>
       <TextInput
       id="userName"
+      name="userName"
       label="Username"
       onChange={leerInput}
       validate
@@ -46,6 +47,7 @@ const Login = (props) =>{
       <TextInput
         className="userPassword"
         id="userPassword"
+        name="password"
         label="Password"
         onChange={leerInput}
         password
@@ -66,4 +68,12 @@ const Login = (props) =>{
     </div>
   )
 }
-export default Login
+const mapStateToProps = state =>{
+  return {
+    loggedUser: state.authR.loggedUser
+  }
+}
+const mapDispatchToProps={
+  loginUser: authActions.loginUser
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Login)

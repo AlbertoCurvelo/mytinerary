@@ -8,7 +8,8 @@ const UserSchema = new mongoose.Schema({
   urlPic:{type: String, required:false, default:''},
   contry:{type: String, required:true},
   password:{type: String , required: true},
-  typeAccount:{type: String, required:false, default:"user"}
+  typeAccount:{type: String, required:false, default:"user"},
+  whereAccount:{type: String, required:false, default:"local"},
 })
 
 const User = mongoose.model('user',UserSchema)
