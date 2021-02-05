@@ -4,10 +4,9 @@ import { Drawer, ButtonToolbar, Button, IconButton, Icon } from 'rsuite';
 import Login from './Login'
 import Register from './Register'
 import UserLoged from './UserLoged'
-import {useState} from 'react' 
 const imgFondo=require(`../assets/img/fondoDefault.webp`).default
   
-class Side extends Component{
+class SideLoginOrRegister extends Component{
   state = { 
     loginOrRegister:false
   }
@@ -72,4 +71,4 @@ class Side extends Component{
     );
   }
 }
-export default Side
+export default SideLoginOrRegister

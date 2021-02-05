@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import DropdownNav from './Dropdown'
-import Side from './Side'
+import SideLoginOrRegister from './SideLoginOrRegister'
 
 class Header extends Component {
   
@@ -9,7 +9,7 @@ class Header extends Component {
       <header className="App">
         <nav>
           <DropdownNav/>
-          <Side/>
+          <SideLoginOrRegister/>
         </nav>
       </header>
     )

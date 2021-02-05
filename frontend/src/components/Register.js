@@ -1,6 +1,18 @@
-import {TextInput,Select,Icon,Button} from 'react-materialize'
+import {TextInput,Icon,Button} from 'react-materialize'
 import {useState} from 'react'
+import {SelectPicker} from 'rsuite'
 const contries=require('../data/dataContryNames.json')
+
+const CustomSelectPicker = ({ placement }) => (
+  <SelectPicker
+    size="sm"
+    data={contries}
+    appearance="subtle"
+    placeholder="Contry"
+    className="selCountries"
+    placement={placement}
+  />
+  )
 
 const Register = () =>{
   const [newUser,setNewUser]=useState({})
@@ -45,37 +57,7 @@ const Register = () =>{
         label="Url Pic"
         onChange={readInput}
       />
-      <Select
-        icon={<Icon>cloud</Icon>}
-        id="selectContry"
-        name="selectContry"
-        multiple={false}
-        options={{
-          classes: '',
-          dropdownOptions: {
-            alignment: 'left',
-            autoTrigger: false,
-            closeOnClick: true,
-            constrainWidth: true,
-            coverTrigger: true,
-            hover: false,
-            inDuration: 150,
-            onCloseEnd: null,
-            onCloseStart: null,
-            onOpenEnd: null,
-            onOpenStart: null,
-            outDuration: 250
-          }
-        }}
-        value=""
-      >
-        <option disabled value="">Choose your contry</option>
-        {contries.map((contry,i)=>{
-          return (
-            <option value={i}>{contry.name}</option>
-          )
-        })}
-      </Select>
+      <CustomSelectPicker placement="topStart"/>
       <TextInput
         name="password"
         id="password"

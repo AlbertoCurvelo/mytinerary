@@ -3,6 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  text-decoration: none !important;
 }
 body{
   display: flex;
@@ -246,6 +247,9 @@ nav a{
   justify-content: space-between;
   align-items: center;
 }
+.socialNetwork p{
+  padding: .5vh 0;
+}
 .liUserNav .circle{
   max-width: 12vw !important;
   max-height: 12vw !important;
@@ -255,6 +259,12 @@ nav a{
 nav .input-field,nav .input-field input{
   margin-top: 1vh !important;
 }
+.rs-drawer-header-close{
+  right: 2vw !important;
+  width: 2.5vw !important;
+  font-weight: bold;
+  color: #d49d12 !important;
+}
 .registerForm{
   padding: 0 1.5vw 1vh 1.5vw;
   max-width: 90% !important;
@@ -263,21 +273,33 @@ nav .input-field,nav .input-field input{
   justify-content: center;
   margin: 0 auto 2vh auto;
 }
-.registerForm .select-dropdown, .registerForm .select-dropdown li span{
-  color: white !important;
-  background-color: rgb(32, 143, 143);
-  transform: scale(1);
-}
 .registerForm input{
   font-size: 1vw !important;
-  max-width: 15vw !important;
-  font-size: 1vw !important;
+  max-width: 100% !important;
 }
 .registerForm .input-field{
   font-size: 1vw !important;
 }
-.registerForm label{
+.registerForm label,.registerForm span{
   color:white
+}
+.rs-picker-toggle-placeholder,.rs-picker-toggle-value{
+  color: white !important;
+}
+.rs-picker-menu,.rs-picker-select-menu-item{
+  background-color: rgb(32, 143, 143);
+  color: white !important;
+}
+.rs-picker-select-menu-item:hover,.rs-picker-toggle-placeholder:hover,.rs-picker-select-menu-item.rs-picker-select-menu-item-focus{
+  background-color: rgb(22, 97, 97) !important;
+}
+.rs-picker-search-bar-input{
+  max-width: 10%;
+  height: 2.15vh !important;
+}
+.rs-btn:hover,.rs-btn:active,.rs-picker-toggle.active{
+  background: rgb(32, 143, 143) !important;
+
 }
 .select-wrapper{
   max-width: 70%;
@@ -759,17 +781,26 @@ footer{
   letter-spacing: .125vw;
 }
 /*Scroll horizontal*/
-.activities::-webkit-scrollbar {
+.activities::-webkit-scrollbar , .rs-drawer-body::-webkit-scrollbar{
   width: 10px;
   height: 15px;
 }
-.activities::-webkit-scrollbar-thumb {
+.activities::-webkit-scrollbar-thumb{
   background:  rgba(72, 20, 121, 0.993);
+  border-radius: 10px;
+  box-shadow: inset 2px 2px 2px hsl(0deg 0% 100% / 25%), inset -2px -2px 2px rgb(0 0 0 / 25%);
+}
+.rs-drawer-body::-webkit-scrollbar-thumb,div::-webkit-scrollbar-thumb {
+  background:  rgb(0, 135, 180);
   border-radius: 10px;
   box-shadow: inset 2px 2px 2px hsl(0deg 0% 100% / 25%), inset -2px -2px 2px rgb(0 0 0 / 25%);
 }
 .activities::-webkit-scrollbar-track {
   background: linear-gradient(90deg,#434343,#434343 1px,rgba(72, 20, 121, 0.726) 0, rgba(72, 20, 121, 0.726));
+  border-radius: 2vw;
+}
+.rs-drawer-body::-webkit-scrollbar-track,div::-webkit-scrollbar-track{
+  background: linear-gradient(90deg,#434343,#434343 1px,rgb(0, 92, 122) 0, rgb(0, 92, 122));
   border-radius: 2vw;
 }
 /*fin scroll horizontal*/

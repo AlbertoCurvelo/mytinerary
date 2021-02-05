@@ -5,19 +5,17 @@ const activitySchema=new mongoose.Schema({
   actTitle:{type: String, required:true}
 })
 const commentSchema=new mongoose.Schema({
-  userName:{type:String, required:true},
-  userComentImg:{type:String, required:true},
+  idUser:{type: String, required:true},
   coment:{type: String, required:true}
 })
 const ItinerarySchema = new mongoose.Schema({
   idCity:{type: mongoose.Schema.ObjectId, ref: 'city'},
   title:{type: String, required:true},
-  userAutor:{type: String, required: true},
-  userImgAutor:{type: String, required:false},
-  likes:{type: Number, required: false, default:0},
+  idUserAutor:{type: String, required: true},
   duration:{type: Number, required: true},
   valoration:{type: Number , required: true},
   hashTags:{type: Array , required:true},
+  arrayLikes:{type: Array, required: false, default:[""]},
   arrayComents:[commentSchema],
   arrayActivities:[activitySchema]
 })
