@@ -2,23 +2,19 @@ import {connect} from 'react-redux'
 import { useEffect,useState } from 'react'
 
 const UserLoged = (props) =>{
-  const [userInfo,setUserInfo]=useState(props.userlogged)
-  useEffect(() => {
-    console.log(props)
-    setUserInfo(props.userlogged)
-  }, [props.userlogged])
   /*falta recibir si alguien esta logueado y poner sus datos*/ 
   return (
+    props.userlogged &&
     <>
       <div style={{
-        backgroundImage:`url(${userInfo.urlPic})`
+        backgroundImage:`url(${props.userlogged.urlPic})`
       }} className="userImg">
       </div>
       <div className="userLogedData">
-      {userInfo.firtsName!==""
+      {props.userlogged.firtsName!==""
       ?<>
-        <p>{userInfo.firtsName+" "+userInfo.lastName}</p>
-        <p>{userInfo.mail}</p>
+        <p>{props.userlogged.firtsName+" "+props.userlogged.lastName}</p>
+        <p>{props.userlogged.mail}</p>
       </>
       :<></>
       }

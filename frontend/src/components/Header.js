@@ -1,18 +1,24 @@
-import React, {Component} from 'react';
+import {connect} from 'react-redux'
+import React from 'react';
 import DropdownNav from './Dropdown'
 import SideLoginOrRegister from './SideLoginOrRegister'
 
-class Header extends Component {
+const Header = ({userLogged})=>{
+  var isUser
+  userLogged ? isUser=true : isUser=false
   
-  render() {
-    return (
-      <header className="App">
-        <nav>
-          <DropdownNav/>
-          <SideLoginOrRegister/>
-        </nav>
-      </header>
-    )
+  return (
+    <header className="App">
+      <nav>
+        <DropdownNav isUser={isUser}/>
+        <SideLoginOrRegister/>
+      </nav>
+    </header>
+  )
+}
+const mapStateToProps = state =>{
+  return {
+    userLogged:state.authR.loggedUser
   }
 }
-export default Header
+export default connect(mapStateToProps,null)(Header)

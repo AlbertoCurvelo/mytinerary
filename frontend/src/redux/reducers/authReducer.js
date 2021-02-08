@@ -24,7 +24,12 @@ export function authReducer(state = initialState, action){
             localStorage.clear()
             return {
                 ...state,
-                loggedUser: null
+                loggedUser: {
+                    "urlPic":require(`../../assets/img/logoUser.png`).default,
+                    "firtsName":"",
+                    "lastName":"",
+                    "mail":""
+                  }
             }
         default:
             return state

@@ -2,11 +2,13 @@ import {connect} from 'react-redux'
 import Login from './Login'
 import Register from './Register'
 import {useState} from 'react'
+import authActions from '../redux/actions/authActions'
 
 const MenuUserOptions = (props) =>{
   const [loginOrRegister,setLoginOrRegister]=useState(false)
   return (
-    props.userLogged.whereAccount!=='local'
+    props.userLogged &&
+    !props.userLogged.token || props.userLogged===null
     ?<>
     <h5>{loginOrRegister ? 'Create an account' : 'Login'}</h5> 
     {
@@ -20,7 +22,14 @@ const MenuUserOptions = (props) =>{
       >or {!loginOrRegister ? 'create an account' : 'login'}
     </p>
     </>
-    :<h1>menu logeado</h1>
+    :props.userLogged && props.userLogged.whereAccount && <>
+      <h1>menu logeado</h1>
+      <p style={{cursor: 'pointer'}} onClick={()=>{
+      props.logout()
+      setLoginOrRegister(false)
+      props.closeDrawer()
+      }} className="logout">Logout</p>
+    </>
   )
 }
 const mapStateToProps= state=>{
@@ -28,4 +37,7 @@ const mapStateToProps= state=>{
     userLogged:state.authR.loggedUser
   }
 }
-export default connect(mapStateToProps,null)(MenuUserOptions)
+const mapDispatchToProps = {
+  logout:authActions.logoutUser
+}
+export default connect(mapStateToProps,mapDispatchToProps)(MenuUserOptions)

@@ -87,6 +87,18 @@ const userController = {
 
       } 
     })
+  },
+  logingForLS: (req, res) => {
+    console.log("entro")
+      res.json({success: true, response: {
+        token: req.body.token, 
+        firtsName:req.user.firtsName,
+        urlPic:req.user.urlPic,
+        lastName:req.user.lastName,
+        whereAccount:req.user.whereAccount,
+        mail:req.user.mail
+      }
+    })
   }
 }
 //fin citiesController

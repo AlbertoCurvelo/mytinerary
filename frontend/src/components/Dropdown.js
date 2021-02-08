@@ -1,7 +1,7 @@
 import {Dropdown,Divider} from 'react-materialize';
 import {Link, NavLink} from 'react-router-dom'
 
-const DropdownNav =() =>{
+const DropdownNav =({isUser}) =>{
   return (
   <Dropdown
     id="Dropdown_6"
@@ -24,7 +24,7 @@ const DropdownNav =() =>{
   >
     <NavLink exact to="/">Home</NavLink>
     <NavLink to="/cities">Cities</NavLink>
-    <NavLink to="/admin">Admin</NavLink>
+    {!isUser && <NavLink to="/admin">Admin</NavLink>}
     <Divider />
   </Dropdown>
   )

@@ -12,7 +12,7 @@ class SideLoginOrRegister extends Component{
     super(props);
     this.state = {
       show: false,
-      imgFondo:require(`../assets/img/fondoDefault.webp`).default,
+      imgFondo:require(`../assets/img/fondoDefault.webp`).default
     };
     this.close = this.close.bind(this);
     this.toggleDrawer = this.toggleDrawer.bind(this);

@@ -3,6 +3,8 @@ const router=express.Router()
 const citiesController=require('../controllers/citiesController')
 const itinerariesController=require('../controllers/itinerariesController')
 const userController=require('../controllers/userController')
+const passport = require('passport')
+require('../config/passport')
 //Se definen las rutas de consulta
 router.route('/cities')
 .get(citiesController.allCities)
@@ -31,6 +33,9 @@ router.route('/users')
 
 router.route('/user/signin')
 .post(userController.signIn)
+
+router.route('/user/localStorage')
+.post(passport.authenticate('jwt',{session:false}), userController.logingForLS)
 
 router.route('/admin/cities/:id')
 .post(citiesController.postCity)
