@@ -1,5 +1,4 @@
 import {connect} from 'react-redux'
-import { useEffect,useState } from 'react'
 
 const UserLoged = (props) =>{
   /*falta recibir si alguien esta logueado y poner sus datos*/ 

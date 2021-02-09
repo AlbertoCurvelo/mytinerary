@@ -3,7 +3,7 @@ import axios from "axios"
 const authActions = {
     newUser: (nuevoUsuario) => {
         return async (dispatch, getState) => {
-            const respuesta = await axios.post('http://localhost:4000/api/user/signup', nuevoUsuario)
+            const respuesta = await axios.post('http://localhost:4000/api/user/register', nuevoUsuario)
            if (!respuesta.data.success) {
                return respuesta.data
            }

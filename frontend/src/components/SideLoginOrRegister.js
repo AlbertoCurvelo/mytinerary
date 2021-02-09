@@ -3,10 +3,12 @@ import '../../node_modules/rsuite/dist/styles/rsuite-default.css';
 import { Drawer, ButtonToolbar, Button } from 'rsuite';
 import UserLoged from './UserLoged'
 import MenuUserOptions from './MenuUserOptions';
+import { connect } from 'react-redux';
   
 class SideLoginOrRegister extends Component{
   state = { 
-    imgFondo:""
+    imgFondo:"",
+    userImg:""
   }
   constructor(props) {
     super(props);
@@ -29,10 +31,15 @@ class SideLoginOrRegister extends Component{
     });
   }
   render() {
+    {
+      !this.props.userLogged ? this.userImg=require('../assets/img/logoUser.png').default : this.userImg=this.props.userLogged.urlPic
+    }
     return (
       <div>
         <ButtonToolbar>
-          <div node="button" onClick={() => this.toggleDrawer('left')} className="user imagenes nav"></div>
+          <div node="button" onClick={() => this.toggleDrawer('left')} style={{
+            backgroundImage:`url(${this.userImg})`
+          }} className="user userNav nav"></div>
         </ButtonToolbar>
 
         <Drawer
@@ -59,4 +66,7 @@ class SideLoginOrRegister extends Component{
     );
   }
 }
-export default SideLoginOrRegister
+function mapStateToProps(state, props) {
+ return {userLogged:state.authR.loggedUser}
+}
+export default connect(mapStateToProps,null)(SideLoginOrRegister)

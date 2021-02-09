@@ -34,6 +34,9 @@ router.route('/users')
 router.route('/user/signin')
 .post(userController.signIn)
 
+router.route('/user/register')
+.post(userController.register)
+
 router.route('/user/localStorage')
 .post(passport.authenticate('jwt',{session:false}), userController.logingForLS)
 

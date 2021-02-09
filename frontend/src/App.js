@@ -29,14 +29,12 @@ function App({userlogged,logingForLS}) {
         <Redirect to="/"/>
       </Switch>
     </>
-    console.log("1")
   }else if(localStorage.getItem('token')){
     logingForLS(localStorage.getItem('token'))
     .then(respuesta => {
       console.log(respuesta)
       if(respuesta === '/') setReload(!reload)
     })
-    console.log("2")
   }else{
     access=<>
     <Header/>
@@ -49,7 +47,6 @@ function App({userlogged,logingForLS}) {
         <Redirect to="/"/>
       </Switch>
     </>
-    console.log("3")
   }
   return (
     <>

@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken')
 
 const userController = {
   //Añadir usuario
-  postUser:(req,res)=>{
+  register:(req,res)=>{
     const {firtsName,lastName,userName,mail,urlPic,contry,password,typeAccount} = req.body
     const passwordHasheado = bcryptjs.hashSync(password, 10)
     const userSave = new User({
@@ -68,25 +68,33 @@ const userController = {
   signIn: async (req, res) => {
     const {username, password} = req.body
     console.log(req.body)
-    const userExists = await User.findOne({username: username})
-    if (!userExists) {
-        return res.json({success: false, mensaje: 'Nombre de usuario y/o contraseña incorrectos.'})
-    }
-    const passwordMatches = bcryptjs.compareSync(password, userExists.password)
-    if (!passwordMatches) {
-        return res.json({success: false, mensaje: 'Nombre de usuario y/o contraseña incorrectos.'})
-    }
-    var token = jwt.sign({...userExists}, process.env.SECRET_KEY, {})
-    return res.json({success: true, response:{
-        token, 
-        firtsName:userExists.firtsName,
-        urlPic:userExists.urlPic,
-        lastName:userExists.lastName,
-        whereAccount:userExists.whereAccount,
-        mail:userExists.mail
+    try{
+      console.log(username)
+      if(username==='' && password===''){
+        return res.json({success: false, mensaje: 'All fields are required.'})
+      }
+      const userExists = await User.findOne({username: username})
+      if (!userExists) {
+          return res.json({success: false, mensaje: 'Incorrect username and/or password.'})
+      }
+      const passwordMatches = bcryptjs.compareSync(password, userExists.password)
+      if (!passwordMatches) {
+          return res.json({success: false, mensaje: 'Incorrect username and/or password.'})
+      }
+      var token = jwt.sign({...userExists}, process.env.SECRET_KEY, {})
+      return res.json({success: true, response:{
+          token, 
+          firtsName:userExists.firtsName,
+          urlPic:userExists.urlPic,
+          lastName:userExists.lastName,
+          whereAccount:userExists.whereAccount,
+          mail:userExists.mail
 
-      } 
-    })
+        } 
+      })
+    }catch(e){
+      return res.json({success: false, mensaje: 'There is an error with the connection, please try again later.'})
+    }
   },
   logingForLS: (req, res) => {
     console.log("entro")

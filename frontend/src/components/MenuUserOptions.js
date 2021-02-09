@@ -3,6 +3,7 @@ import Login from './Login'
 import Register from './Register'
 import {useState} from 'react'
 import authActions from '../redux/actions/authActions'
+import {Alert} from 'rsuite'
 
 const MenuUserOptions = (props) =>{
   const [loginOrRegister,setLoginOrRegister]=useState(false)
@@ -13,7 +14,7 @@ const MenuUserOptions = (props) =>{
     <h5>{loginOrRegister ? 'Create an account' : 'Login'}</h5> 
     {
       loginOrRegister
-      ?<Register/>
+      ?<Register closeDrawer={props.closeDrawer}/>
       :<Login closeDrawer={props.closeDrawer}/>
     }
     <p className="loginOrNot" node="button" onClick={()=>{
@@ -23,13 +24,21 @@ const MenuUserOptions = (props) =>{
     </p>
     </>
     :props.userLogged && props.userLogged.whereAccount && <>
-      <h1>menu logeado</h1>
-      <p style={{cursor: 'pointer'}} onClick={()=>{
-      props.logout()
-      setLoginOrRegister(false)
-      props.closeDrawer()
-      }} className="logout">Logout</p>
-    </>
+      <div className="menuLoged">
+        <h5>User - Menu</h5>
+        <div className="contentMenuUser">
+          <p>Future functionalities</p>
+        </div>
+        <div className="logoutBar">
+          <p style={{cursor: 'pointer'}} onClick={()=>{
+          props.logout()
+          setLoginOrRegister(false)
+          props.closeDrawer()
+          Alert.warning('Session has been successfully closed. Come back soon.',3500)
+          }} className="logout">Logout</p>
+        </div>
+      </div>
+      </>
   )
 }
 const mapStateToProps= state=>{

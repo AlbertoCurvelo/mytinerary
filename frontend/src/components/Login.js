@@ -2,6 +2,7 @@ import {connect} from 'react-redux'
 import {TextInput,Button} from 'react-materialize'
 import {useState} from 'react'
 import authActions from '../redux/actions/authActions'
+import {Alert,Message} from 'rsuite'
 
 const Login = (props) =>{
   const [userLogin, setUserLogin] = useState({})
@@ -14,18 +15,41 @@ const Login = (props) =>{
         [campo]: valor
     })
   }
+  function validationUserData (userData){
+    setErrores([])
+    let validate=false
+    const {password,userName}=userData
+    if(!userName || (userName.length==='')){
+      validate=true
+      setErrores(["Username cannot be empty or blank"
+      ])
+    }
+    if(!password || (password.length==='')){
+      validate=true
+      setErrores(["Password cannot be empty or blank"
+    ])
+    }
+  return validate
+  }
+  const enterKeyboard = e =>{
+    //El numero 13 seria la tecla enter, si fue presionada envio la validacion
+    //como si fuera el boton sign in
+    if (e.charCode === 13) {
+      validUser(e)
+    }
+  }
   const validUser = async e => {
     e.preventDefault()
-    if (userLogin.username === "" || userLogin.password === "") {
-        alert("Todos los campos son obligatorios")
-        return false
-    }
-    setErrores([])
-    const respuesta = await props.loginUser(userLogin)
-    if (respuesta && !respuesta.success) {
+    if(!validationUserData(userLogin)){
+      const respuesta = await props.loginUser(userLogin)
+      if (respuesta && !respuesta.success) {
+        console.log(errores)
+        console.log(respuesta)
         setErrores([respuesta.mensaje])
-    } else {
-        props.closeDrawer()
+      } else {
+          props.closeDrawer()
+          Alert.success('The user has been successfully logged in',3500)
+      }
     }
   }
   return (
@@ -50,6 +74,7 @@ const Login = (props) =>{
         name="password"
         label="Password"
         onChange={leerInput}
+        onKeyPress={enterKeyboard}
         password
       />
       <Button
@@ -63,7 +88,15 @@ const Login = (props) =>{
       sign in
       </Button>
       <div className="errores">
-        {errores.map(error => <h2>{error}</h2>)}
+        {errores.map((error,i) => 
+        <Message 
+          closable
+          showIcon
+          key={'errorM'+i}
+          type="error"
+          description={error}
+          className="messageError"
+        /> )}
       </div>
     </div>
   )
