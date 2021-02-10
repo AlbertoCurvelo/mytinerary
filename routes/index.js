@@ -23,7 +23,7 @@ router.route('/itineraries/city/:id')
 .get(itinerariesController.itinerariesForCity)
 
 router.route('/user')
-.post(userController.postUser)
+.post(userController.register)
 
 router.route('/user/:id')
 .get(userController.singleUser)

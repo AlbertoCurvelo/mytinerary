@@ -21,7 +21,6 @@ function App({userlogged,logingForLS}) {
   if(userlogged.firtsName!==""){
     //falta condicional para el admin
     access=<>
-      <Header/>
       <Switch>
         <Route exact path="/" component={HomeContent} />
         <Route exact path="/cities" component={Cities} />
@@ -37,7 +36,6 @@ function App({userlogged,logingForLS}) {
     })
   }else{
     access=<>
-    <Header/>
       <Switch>
         <Route exact path="/" component={HomeContent} />
         <Route exact path="/cities" component={Cities} />
@@ -51,8 +49,9 @@ function App({userlogged,logingForLS}) {
   return (
     <>
     <BrowserRouter>
-      {access}
-    <Footer />
+      <Header/>
+        {access}
+      <Footer />
     </BrowserRouter>
     </>
   )

@@ -1,28 +1,38 @@
 import {connect} from 'react-redux'
-import {TextInput,Button} from 'react-materialize'
+import {TextInput,Button,Select} from 'react-materialize'
 import {useState,useEffect} from 'react'
-import {SelectPicker} from 'rsuite'
 import authActions from '../redux/actions/authActions'
 import {Alert,Message} from 'rsuite'
-const contries=require('../data/dataContryNames.json')
+import GoogleLogin from 'react-google-login';
 
 const Register = ({closeDrawer,newUserSave}) =>{ 
   const [errores, setErrores] = useState([])
   const [newUser,setNewUser]=useState({})
-  useEffect(() => {
-    document.querySelector('.rs-drawer-body').scrollTop = '400px'
-  }, [errores])
+  const countries=require('../data/dataContryNames.json')
   //funciones
-  const CustomSelectPicker = ({ placement }) => (
-    <SelectPicker
-      size="sm"
-      data={contries}
-      appearance="subtle"
-      placeholder="Contry"
-      className="selCountries"
-      placement={placement}
-      onChange={()=>readInputSelect}
-    />)
+  const responseGoogle = async (response) => {
+    if (response.error) {
+        alert("Algo pasó...")
+    } else {
+        const respuesta = await newUserSave({
+          firtsName: response.profileObj.givenName,
+          lastName: response.profileObj.familyName,
+          userName: response.profileObj.email,
+          password: response.profileObj.googleId,
+          mail: response.profileObj.email,
+          urlPic:response.profileObj.imageUrl,
+          contry:"Argentina",
+          whereAccount:"google"
+        })
+        if (respuesta && !respuesta.success) {
+            setErrores(respuesta.errores)
+        } else {
+          closeDrawer()
+          Alert.success('the account has been created.',5000)
+          Alert.success('The user has been successfully logged in.',4500)
+        }
+    }
+  }
   function validationUserData (userData){
     setErrores([])
     let validate=false
@@ -70,14 +80,6 @@ const Register = ({closeDrawer,newUserSave}) =>{
       }
     }
   }
-  const readInputSelect=(valor,evt)=>{
-    console.log(evt)
-    const campo="contry"
-    setNewUser({
-      ...newUser,
-      [campo]:valor
-    })
-  }
   const readInput=e=>{
     const campo=e.target.name.trim()
     const valor=e.target.value.trim()
@@ -87,71 +89,62 @@ const Register = ({closeDrawer,newUserSave}) =>{
     })
   }
   //fin de funciones
-  
-  console.log(newUser)
   return(
-    <div className="registerForm">
-      <TextInput
-        name="firtName"
-        id="firtName"
-        label="First Name"
-        onChange={readInput}
-        onKeyPress={enterKeyboard}
-      />
-      <TextInput
-        name="lastName"
-        id="lastName"
-        label="Last Name"
-        onChange={readInput}
-        onKeyPress={enterKeyboard}
-      />
-      <TextInput
-        name="username"
-        id="username"
-        label="UserName"
-        onChange={readInput}
-        onKeyPress={enterKeyboard}
-      />
-      <TextInput
-        name="mail"
-        id="mail"
-        label="Email"
-        onChange={readInput}
-        onKeyPress={enterKeyboard}
-      />
-      <TextInput
-        name="urlPic"
-        id="urlPic"
-        label="Url Pic"
-        onChange={readInput}
-        onKeyPress={enterKeyboard}
-      />
-      <CustomSelectPicker placement="topStart"/>
-      <TextInput
-        name="password"
-        id="password"
-        label="Password"
-        onChange={readInput}
-        onKeyPress={enterKeyboard}
-      />
-      <Button
-        node="button"
-        waves="light"
-        onClick={validarUsuario}
-      >
-      Sign in
-    </Button>
-    <div className="errores">
-        {
-        errores.map((error,i) => 
-        <Message 
-          closable
-          showIcon
-          key={'errorM'+i}
-          type="error"
-          description={error}
-          className="messageError"
-        /> )}
+    <div className="registerPage">
+      <div className="socialNetwork">
+      <p>Create from a social network</p>
+      <div className="iconosRedes">
+        <div className="googleIcon">
+          <GoogleLogin
+            clientId="60465909921-7m67djmblskurmq8p4ngv9t4obo210ct.apps.googleusercontent.com"
+            onSuccess={responseGoogle}
+            onFailure={responseGoogle}
+            cookiePolicy={'single_host_origin'}
+            icon={false}
+            buttonText=""
+          />
+          </div>
+        </div>
+        <p>Or enter the following data.</p>
+      </div>
+      <div className="registerForm">
+        <TextInput name="firtsName" id="firtsName" label="First Name" onChange={readInput} onKeyPress={enterKeyboard}/>
+        <TextInput name="lastName" id="lastName" label="Last Name" onChange={readInput} onKeyPress={enterKeyboard}/>
+        <TextInput name="userName" id="username" label="UserName" onChange={readInput} onKeyPress={enterKeyboard}/>
+        <TextInput name="mail" id="mail" label="Email" onChange={readInput} onKeyPress={enterKeyboard}/>
+        <TextInput name="urlPic" id="urlPic" label="Url Pic" onChange={readInput} onKeyPress={enterKeyboard}/>
+        <Select name="contry" id="Select-9" label="Choose your contry" multiple={false} onChange={readInput}
+          options={{
+            classes: '',
+            dropdownOptions: {
+              alignment: 'left',
+              autoTrigger: true,
+              closeOnClick: true,
+              constrainWidth: true,
+              coverTrigger: true,
+              hover: false,
+              inDuration: 150,
+              onCloseEnd: null,
+              onCloseStart: null,
+              onOpenEnd: null,
+              onOpenStart: null,
+              outDuration: 250
+            }
+          }}
+          value="Argentina"
+        >      
+        {countries.map((contry,i)=>{
+          return <option key={"selectCountry"+i} value={contry.value}>{contry.label}</option>
+        })}
+        </Select>
+        <TextInput name="password" id="password" label="Password" onChange={readInput} onKeyPress={enterKeyboard} password/>
+        <Button node="button" waves="light" onClick={validarUsuario}>
+          Sign in
+        </Button>
+        <div className="errores">
+            {errores.map((error,i) => 
+            <Message closable showIcon key={'errorM'+i} type="error" description={error} className="messageError"/> )}
+        </div>
       </div>
     </div>
   )

@@ -2,15 +2,12 @@ import {connect} from 'react-redux'
 import React from 'react';
 import DropdownNav from './Dropdown'
 import SideLoginOrRegister from './SideLoginOrRegister'
-
-const Header = ({userLogged})=>{
-  var isUser
-  userLogged ? isUser=true : isUser=false
-  
+import authActions from '../redux/actions/authActions'
+const Header = ({userLogged,logout})=>{
   return (
     <header className="App">
       <nav>
-        <DropdownNav isUser={isUser}/>
+        <DropdownNav userLogged={userLogged} logout={logout}/>
         <SideLoginOrRegister/>
       </nav>
     </header>
@@ -21,4 +18,7 @@ const mapStateToProps = state =>{
     userLogged:state.authR.loggedUser
   }
 }
-export default connect(mapStateToProps,null)(Header)
+const mapDispatchToProps={
+  logout:authActions.logoutUser
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Header)

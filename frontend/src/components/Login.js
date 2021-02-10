@@ -3,6 +3,7 @@ import {TextInput,Button} from 'react-materialize'
 import {useState} from 'react'
 import authActions from '../redux/actions/authActions'
 import {Alert,Message} from 'rsuite'
+import GoogleLogin from 'react-google-login';
 
 const Login = (props) =>{
   const [userLogin, setUserLogin] = useState({})
@@ -14,6 +15,23 @@ const Login = (props) =>{
         ...userLogin,
         [campo]: valor
     })
+  }
+  //funciones
+  const responseGoogle = async response => {
+    if (response.error) {
+        alert("Error connecting to google server")
+    } else {
+      const respuesta = await props.loginUser({
+          userName: response.profileObj.email,
+          password: response.profileObj.googleId
+      })
+      if (respuesta && !respuesta.success) {
+          setErrores([respuesta.mensaje])
+      } else {
+          props.closeDrawer()
+          Alert.success('You logged in successfully',3500)
+      }
+    }
   }
   function validationUserData (userData){
     setErrores([])
@@ -43,8 +61,6 @@ const Login = (props) =>{
     if(!validationUserData(userLogin)){
       const respuesta = await props.loginUser(userLogin)
       if (respuesta && !respuesta.success) {
-        console.log(errores)
-        console.log(respuesta)
         setErrores([respuesta.mensaje])
       } else {
           props.closeDrawer()
@@ -52,12 +68,22 @@ const Login = (props) =>{
       }
     }
   }
+  //fin funciones
   return (
     <div className="loginUser">
       <div className="socialNetwork">
         <p>Login from a social network</p>
         <div className="iconosRedes">
-          <div className="googleIcon"></div>
+          <div className="googleIcon">
+            <GoogleLogin
+              clientId="60465909921-7m67djmblskurmq8p4ngv9t4obo210ct.apps.googleusercontent.com"
+              onSuccess={responseGoogle}
+              onFailure={responseGoogle}
+              cookiePolicy={'single_host_origin'}
+              icon={false}
+              buttonText=""
+            />
+          </div>
         </div>
         <p>Or login with your credentials.</p>
       </div>

@@ -1,7 +1,8 @@
 import {Dropdown,Divider} from 'react-materialize';
 import {Link, NavLink} from 'react-router-dom'
+import {Alert} from 'rsuite'
 
-const DropdownNav =({isUser}) =>{
+const DropdownNav =({userLogged,logout}) =>{
   return (
   <Dropdown
     id="Dropdown_6"
@@ -24,7 +25,11 @@ const DropdownNav =({isUser}) =>{
   >
     <NavLink exact to="/">Home</NavLink>
     <NavLink to="/cities">Cities</NavLink>
-    {!isUser && <NavLink to="/admin">Admin</NavLink>}
+    {userLogged.firtsName !== "" && <p onClick={()=>{
+      logout()
+      Alert.warning('Session has been successfully closed. Come back soon.',3500)
+      }}>Logout</p>}
+    {Object.entries(userLogged).length === 0 && <NavLink to="/admin">Admin</NavLink>}
     <Divider />
   </Dropdown>
   )

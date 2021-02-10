@@ -4,20 +4,35 @@ const jwt = require('jsonwebtoken')
 
 const userController = {
   //Añadir usuario
-  register:(req,res)=>{
-    const {firtsName,lastName,userName,mail,urlPic,contry,password,typeAccount} = req.body
-    const passwordHasheado = bcryptjs.hashSync(password, 10)
-    const userSave = new User({
-      firtsName,lastName,userName,
-      mail,urlPic,contry,password:passwordHasheado,typeAccount,whereAccount
-    })
-    userSave.save()
-    .then(guardoUser =>{
-      return res.json({success:true, respuesta: guardoUser})
-    })
-    .catch(error =>{
-      return res.json({success:false, error: 'Error al intentar guardar: '+ error})
-    })
+  register:async (req,res)=>{
+    var errores = []
+    const {firtsName,lastName,userName,mail,urlPic,contry,password,typeAccount,whereAccount} = req.body
+    const userNameExists = await User.findOne({userName: userName})
+    const emailExists = await User.findOne({mail: mail})
+    if (userNameExists) {errores.push('The username is already in use. Please choose another.')}
+    if (emailExists) {errores.push('The Email is already in use. Please choose another.')}
+    if (errores.length === 0) {
+      const passwordHasheado = bcryptjs.hashSync(password, 10)
+      const userSave = new User({
+        firtsName,lastName,userName,
+        mail,urlPic,contry,password:passwordHasheado,typeAccount,whereAccount
+      })
+      userSave.save()
+      .then(guardoUser =>{
+        var token = jwt.sign({...userSave}, process.env.SECRET_KEY, {})
+        return res.json({
+          success:true, 
+          response:{token, userName: guardoUser.userName,
+            firtsName:guardoUser.firtsName,urlPic:guardoUser.urlPic,lastName:guardoUser.lastName,
+            whereAccount:guardoUser.whereAccount,mail:guardoUser.mail}})
+      })
+      .catch(error =>{
+        return res.json({success:false, error: 'Error al intentar guardar: '+ error})
+      })
+    }else{
+      return res.json({
+        success: false, errores: errores})
+    }
   },
   putUser:(req,res)=>{
     /*const id=req.params.id
@@ -66,14 +81,12 @@ const userController = {
     }
   },
   signIn: async (req, res) => {
-    const {username, password} = req.body
-    console.log(req.body)
+    const {userName, password} = req.body
     try{
-      console.log(username)
-      if(username==='' && password===''){
+      if(userName==='' && password===''){
         return res.json({success: false, mensaje: 'All fields are required.'})
       }
-      const userExists = await User.findOne({username: username})
+      const userExists = await User.findOne({userName: userName})
       if (!userExists) {
           return res.json({success: false, mensaje: 'Incorrect username and/or password.'})
       }
@@ -89,7 +102,6 @@ const userController = {
           lastName:userExists.lastName,
           whereAccount:userExists.whereAccount,
           mail:userExists.mail
-
         } 
       })
     }catch(e){
@@ -97,7 +109,6 @@ const userController = {
     }
   },
   logingForLS: (req, res) => {
-    console.log("entro")
       res.json({success: true, response: {
         token: req.body.token, 
         firtsName:req.user.firtsName,

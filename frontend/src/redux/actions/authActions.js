@@ -3,11 +3,12 @@ import axios from "axios"
 const authActions = {
     newUser: (nuevoUsuario) => {
         return async (dispatch, getState) => {
-            const respuesta = await axios.post('http://localhost:4000/api/user/register', nuevoUsuario)
-           if (!respuesta.data.success) {
-               return respuesta.data
+            const response = await axios.post('http://localhost:4000/api/user/register', nuevoUsuario)
+           console.log(response)
+            if (!response.data.success) {
+               return response.data
            }
-            dispatch({type: 'LOG_USER', payload: respuesta.data})
+            dispatch({type: 'LOG_USER', payload: response.data})
         }
     },
 

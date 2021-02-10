@@ -17,7 +17,7 @@ const City = (props) =>{
     loading()
   }, [id,getAllItinerariesForId,cities])
   async function loading(){
-    await setCity(cities.filter(city => (city._id === id))[0])
+    setCity(cities.filter(city => (city._id === id))[0])
     await getAllItinerariesForId(id)
     setLoaded(true)
   }

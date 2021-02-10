@@ -8,6 +8,7 @@ const initialState = {
 }
 
 export function authReducer(state = initialState, action){
+    console.log(action.payload)
     switch (action.type) {
         case 'LOG_USER':
             localStorage.setItem('firtsName', action.payload.response.firtsName)

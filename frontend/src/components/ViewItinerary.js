@@ -6,21 +6,20 @@ import Loader from './Loader'
 const ViewItinerary =({itinerary})=>{
   //parametros recibidos del padre
   const {
-    title,userAutor,userImgAutor,
+    title,idUserAutor,
     likes,duration,valoration,hashTags,arrayComents,arrayActivities,_id
   } = itinerary
   //variables de estado del componente
   const [viewMoreOrLess,setViewMoreOrLess]=useState(false)
   const valorations=[1,2,3,4,5]
-
   return (
     <div className="itineraryView">
       <div className="itineraryDetail">
         <div className="userAutorView">
           <div className="userAutorImg">
-            <div style={{backgroundImage:`url(${userImgAutor})`}}></div>
+            <div style={{backgroundImage:`url(${idUserAutor.urlPic})`}}></div>
           </div>
-          <p>{userAutor}</p>
+          <p>{idUserAutor.firtsName+" "+idUserAutor.lastName}</p>
         </div>
         <div className="contentItinerary">
           <h4>{title}</h4>

@@ -1,10 +1,11 @@
 const Itinerary = require('../models/Itinerary')
+const UserComent = require('../models/UserComent')
 const itinerariesController = {
   //añadir itinerario
   postItinerary:(req,res)=>{
-    const {idCity,title,userAutor,userImgAutor,likes,duration,valoration,hashTags,arrayComents,arrayActivities} = req.body
+    const {idCity,title,userAutor,idUserAutor,userImgAutor,likes,duration,valoration,hashTags,arrayComents,arrayActivities} = req.body
     const itineraryAGuardar = new Itinerary({
-      idCity, title, userAutor, userImgAutor, 
+      idCity, title, userAutor, userImgAutor, idUserAutor,
       likes, duration, valoration,
       hashTags, arrayComents, arrayActivities
     })
@@ -35,6 +36,14 @@ const itinerariesController = {
     const id = req.params.id
     try {
       const data= await Itinerary.find({idCity:id})
+      .populate('idUserAutor')
+      .populate({
+        path:'arrayComents',
+        populate:{
+          path:'idUser',
+          model:'user'
+        }
+      })
       return res.json({success:true , respuesta: data})
     } catch (error) {
       return res.json({success:false, respuesta:'Error al intentar pedir los datos a la db: '+error})
