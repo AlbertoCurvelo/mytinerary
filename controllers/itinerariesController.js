@@ -50,8 +50,21 @@ const itinerariesController = {
   },
   likeOrDislike:async(req,res)=>{
     const idUser= req.params.idUser
-    const idItinerary= req.params.idUser
-    console.log(idUser+" idItinerary: "+idItinerary)
+    const idItinerary= req.params.idItinerary
+    const arrayLikes= await Itinerary.find({_id:idItinerary,arrayLikes:idUser})
+    if(arrayLikes.length===0){
+      const result= await Itinerary.findOneAndUpdate(
+        {_id:idItinerary},
+        { $push: {'arrayLikes': idUser} })
+        .then(()=>res.json({success:true}))
+        .catch(e=>res.json({success:false, error:"Error while modifying in database."}))
+    }else{
+      const result= await Itinerary.findOneAndUpdate(
+        {_id:idItinerary},
+        { $pull: {'arrayLikes':idUser}})
+        .then(()=>res.json({success:true}))
+        .catch(e=>res.json({success:false, error:"Error while modifying in database."}))
+    }
     /*Itinerary.findByIdAndUpdate(
       {_id:id},
       {

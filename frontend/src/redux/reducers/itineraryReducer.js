@@ -1,5 +1,6 @@
 const initialState = {
-  itinerariesForThisCity:[]
+  itinerariesForThisCity:[],
+  reload:false
 }
 export function itineraryReducer(state=initialState,action){
   switch (action.type) {
@@ -10,7 +11,8 @@ export function itineraryReducer(state=initialState,action){
       }
       case 'SET_LIKE_ITINERARY':
         return{
-          ...state
+          ...state,
+          reload:!state.reload
         }
     default: return state
   }

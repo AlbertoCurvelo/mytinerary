@@ -10,11 +10,11 @@ const itineraryActions = {
     }
   },
   setLikeThisItinerary:(userLikeData) =>{
-    console.log(userLikeData)
     return async (dispatch, getState) => {
       const respuesta= await axios.put(direccionHost+'/itineraries/city/likeOrDislike/'+userLikeData.idUser+'/'+userLikeData.idItinerary)
-      const data= await respuesta.json()
-      dispatch({type: "SET_LIKE_ITINERARY", payload: data.data.respuesta})}
+      console.log(respuesta)
+      if(!respuesta.data.success)return respuesta.data.success
+      dispatch({type: "SET_LIKE_ITINERARY", payload: respuesta.data.success})}
   }
 }
 export default itineraryActions

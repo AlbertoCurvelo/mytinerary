@@ -26,7 +26,6 @@ const ViewItinerary =({itinerary,userLogged,setLikeThisItinerary})=>{
   //variables de estado del componente
   const [viewMoreOrLess,setViewMoreOrLess]=useState(false)
   const valorations=[1,2,3,4,5]
-  console.log(userLogged)
   return (
     <div className="itineraryView">
       <div className="itineraryDetail">
@@ -40,7 +39,11 @@ const ViewItinerary =({itinerary,userLogged,setLikeThisItinerary})=>{
           <h4>{title}</h4>
           <div className="likesAndOthers">
             <div className="likes">
-              <i onClick={userLogged._id ? ()=>setLikeThisItinerary({"idUser":userLogged._id,"idItinerary":itinerary._id}) :()=>alertNotUser()} 
+              <i onClick={userLogged._id 
+              ? ()=>{
+                const respuesta=setLikeThisItinerary({"idUser":userLogged._id,"idItinerary":itinerary._id})
+                !respuesta && Alert.error('Error while modifying in database.',3500)
+              }:()=>alertNotUser()} 
               className="material-icons red-text favItinerary">{
               arrayLikes &&
               arrayLikes.map(idUser=>{

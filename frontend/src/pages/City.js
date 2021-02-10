@@ -7,7 +7,7 @@ const {useEffect, useState} = require("react")
 
 const City = (props) =>{
   //Destructurado
-  const {cities,itinerariesForThisCity,getAllItinerariesForId}=props
+  const {cities,itinerariesForThisCity,getAllItinerariesForId,reload}=props
   const [city,setCity]=useState({})
   const [loaded,setLoaded]=useState(false)
   const {id}  = props.match.params
@@ -16,6 +16,14 @@ const City = (props) =>{
     window.scrollTo(0,0)
     loading()
   }, [id,getAllItinerariesForId,cities])
+  
+  useEffect(() => {
+    reloadItinerary()
+  },[reload])
+
+  async function reloadItinerary(){
+    await getAllItinerariesForId(id)
+  }
   async function loading(){
     setCity(cities.filter(city => (city._id === id))[0])
     await getAllItinerariesForId(id)
@@ -76,7 +84,8 @@ const City = (props) =>{
 const mapStateToProps = state => {
   return {
     cities: state.cityR.cities,
-    itinerariesForThisCity: state.itineraryR.itinerariesForThisCity
+    itinerariesForThisCity: state.itineraryR.itinerariesForThisCity,
+    reload:state.itineraryR.reload
   } 
 }
 const mapDispatchToProps = {
