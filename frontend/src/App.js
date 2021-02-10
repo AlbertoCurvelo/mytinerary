@@ -31,7 +31,6 @@ function App({userlogged,logingForLS}) {
   }else if(localStorage.getItem('token')){
     logingForLS(localStorage.getItem('token'))
     .then(respuesta => {
-      console.log(respuesta)
       if(respuesta === '/') setReload(!reload)
     })
   }else{

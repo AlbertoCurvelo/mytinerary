@@ -760,10 +760,14 @@ footer{
   border-radius: 5vw;
   box-shadow: 0px 0px 10px 2px rgba(184, 132, 233, 0.336);
 }
-.likesAndOthers{
+.likesAndOthers,.likes{
   display: flex;
   align-content: center;
   justify-content: space-around;
+}
+.favItinerary{
+  cursor: pointer;
+  font-size: 2.5vw !important;
 }
 .hashtagsItinerary{
   display: flex;
@@ -775,14 +779,18 @@ footer{
   justify-content: space-between;
 }
 .imgUserComent{
+  min-height: 60px;
+  min-width: 60px;
   width: 5vw;
   height: 5vw;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  border-radius: 5vw;
+  border-radius: 20vw;
 }
 .burbleComent{
+  max-width: 90%;
+  text-align: left;
   margin: 2vw 0 0 .25vw;
   padding: 1.25vw .75vw;
   display: flex;

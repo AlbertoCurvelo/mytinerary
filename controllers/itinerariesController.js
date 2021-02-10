@@ -1,5 +1,4 @@
 const Itinerary = require('../models/Itinerary')
-const UserComent = require('../models/UserComent')
 const itinerariesController = {
   //añadir itinerario
   postItinerary:(req,res)=>{
@@ -48,6 +47,24 @@ const itinerariesController = {
     } catch (error) {
       return res.json({success:false, respuesta:'Error al intentar pedir los datos a la db: '+error})
     }
+  },
+  likeOrDislike:async(req,res)=>{
+    const idUser= req.params.idUser
+    const idItinerary= req.params.idUser
+    console.log(idUser+" idItinerary: "+idItinerary)
+    /*Itinerary.findByIdAndUpdate(
+      {_id:id},
+      {
+        titleCity:newCity.titleCity,
+        directionImage:newCity.directionImage,
+        descriptionCity:newCity.descriptionCity
+      })
+    .then(modificoCity =>{
+      return res.json({success:true, respuesta: "test"})
+    })
+    .catch(error =>{
+      return res.json({success:false, error: 'Error al intentar modificar: '+ error})
+    })*/
   }
 }
 

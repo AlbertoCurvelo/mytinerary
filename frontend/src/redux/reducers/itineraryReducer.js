@@ -8,6 +8,10 @@ export function itineraryReducer(state=initialState,action){
         ...state,
         itinerariesForThisCity:action.payload
       }
+      case 'SET_LIKE_ITINERARY':
+        return{
+          ...state
+        }
     default: return state
   }
 }

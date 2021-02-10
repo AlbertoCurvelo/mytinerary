@@ -24,7 +24,7 @@ const userController = {
           success:true, 
           response:{token, userName: guardoUser.userName,
             firtsName:guardoUser.firtsName,urlPic:guardoUser.urlPic,lastName:guardoUser.lastName,
-            whereAccount:guardoUser.whereAccount,mail:guardoUser.mail}})
+            whereAccount:guardoUser.whereAccount,mail:guardoUser.mail,_id:guardoUser._id}})
       })
       .catch(error =>{
         return res.json({success:false, error: 'Error al intentar guardar: '+ error})
@@ -101,7 +101,8 @@ const userController = {
           urlPic:userExists.urlPic,
           lastName:userExists.lastName,
           whereAccount:userExists.whereAccount,
-          mail:userExists.mail
+          mail:userExists.mail,
+          _id:userExists._id
         } 
       })
     }catch(e){
@@ -115,7 +116,8 @@ const userController = {
         urlPic:req.user.urlPic,
         lastName:req.user.lastName,
         whereAccount:req.user.whereAccount,
-        mail:req.user.mail
+        mail:req.user.mail,
+        _id:req.user._id
       }
     })
   }

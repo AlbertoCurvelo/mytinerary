@@ -1,6 +1,5 @@
 const Coment = (props) =>{
   const {idUser,coment} = props.coment
-  console.log(idUser)
   return (
     <div className="coment">
       <div className="imgUserComent" style={{backgroundImage:`url(${idUser.urlPic})`}}></div>

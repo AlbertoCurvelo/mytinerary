@@ -15,7 +15,7 @@ const ItinerarySchema = new mongoose.Schema({
   duration:{type: Number, required: true},
   valoration:{type: Number , required: true},
   hashTags:{type: Array , required:true},
-  arrayLikes:{type: Array, required: false, default:[""]},
+  arrayLikes:{type: Array, required: false, default:[]},
   arrayComents:[commentSchema],
   arrayActivities:[activitySchema]
 })

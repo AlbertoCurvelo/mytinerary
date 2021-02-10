@@ -22,6 +22,9 @@ router.route('/itineraries/:id')
 router.route('/itineraries/city/:id')
 .get(itinerariesController.itinerariesForCity)
 
+router.route('/itineraries/city/likeOrDislike/:idUser/:idItinerary')
+.put(itinerariesController.likeOrDislike)
+
 router.route('/user')
 .post(userController.register)
 
