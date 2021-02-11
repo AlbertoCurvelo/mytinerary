@@ -23,8 +23,9 @@ const authActions = {
             })
                 dispatch({type: 'LOG_USER', payload: {response: {...respuesta.data.response}}})
             } catch(err) {
+                console.log(err)
                 if (err.response.status === 401) {
-                    alert("Usted está intentando cagarme...")
+                    alert("error with token")
                     localStorage.clear()
                     return '/'
                 }

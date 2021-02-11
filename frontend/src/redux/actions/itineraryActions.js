@@ -11,10 +11,28 @@ const itineraryActions = {
   },
   setLikeThisItinerary:(userLikeData) =>{
     return async (dispatch, getState) => {
-      const respuesta= await axios.put(direccionHost+'/itineraries/city/likeOrDislike/'+userLikeData.idUser+'/'+userLikeData.idItinerary)
-      console.log(respuesta)
+      const respuesta= await axios.put(direccionHost+'/itineraries/city/likeOrDislike',{userLikeData})
       if(!respuesta.data.success)return respuesta.data.success
-      dispatch({type: "SET_LIKE_ITINERARY", payload: respuesta.data.success})}
+      dispatch({type: "SET_CHANGE_COMMENT", payload: respuesta.data.success})}
+  },
+  newComment:(commentUser)=>{
+    return async (dispatch,getState) =>{
+      const respuesta=await axios.put(direccionHost+'/comments/newComment',{commentUser})
+      if(!respuesta.data.success)return respuesta.data.success
+      dispatch({type: "SET_CHANGE_COMMENT", payload: respuesta.data.success})}
+    },
+  delComment:(commentDelete)=>{
+    return async (dispatch,getState)=>{
+      const respuesta=await axios.put(direccionHost+'/comments/delComment',{commentDelete})
+      if(!respuesta.data.success)return respuesta.data.success
+      dispatch({type: "SET_CHANGE_COMMENT", payload: respuesta.data.success})}
+  },
+  editComment:(commentEdit)=>{
+    console.log(commentEdit)
+    return async (dispatch,getState)=>{
+      const respuesta=await axios.put(direccionHost+'/comments/editComment',{commentEdit})
+      if(!respuesta.data.success)return respuesta.data.success
+      dispatch({type: "SET_CHANGE_COMMENT", payload: respuesta.data.success})}
   }
 }
 export default itineraryActions

@@ -4,6 +4,7 @@ const citiesController=require('../controllers/citiesController')
 const itinerariesController=require('../controllers/itinerariesController')
 const userController=require('../controllers/userController')
 const passport = require('passport')
+const Itinerary = require('../models/Itinerary')
 require('../config/passport')
 //Se definen las rutas de consulta
 router.route('/cities')
@@ -22,8 +23,17 @@ router.route('/itineraries/:id')
 router.route('/itineraries/city/:id')
 .get(itinerariesController.itinerariesForCity)
 
-router.route('/itineraries/city/likeOrDislike/:idUser/:idItinerary')
+router.route('/itineraries/city/likeOrDislike')
 .put(itinerariesController.likeOrDislike)
+
+router.route('/comments/delComment')
+.put(itinerariesController.delComment)
+
+router.route('/comments/editComment')
+.put(itinerariesController.editComment)
+
+router.route('/comments/newComment')
+.put(itinerariesController.newComment)
 
 router.route('/user')
 .post(userController.register)

@@ -10,7 +10,7 @@ module.exports = passport.use(new jwtStrategy({
   User.findById(payload._doc._id)
   .then(user=>{
     if(!user){
-      return done(null,dalse)
+      return done(null,false)
     }else{
       return done(null, user)
     }

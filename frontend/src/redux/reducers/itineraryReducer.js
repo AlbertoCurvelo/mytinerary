@@ -9,7 +9,7 @@ export function itineraryReducer(state=initialState,action){
         ...state,
         itinerariesForThisCity:action.payload
       }
-      case 'SET_LIKE_ITINERARY':
+      case 'SET_CHANGE_COMMENT':
         return{
           ...state,
           reload:!state.reload

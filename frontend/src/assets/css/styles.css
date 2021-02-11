@@ -760,6 +760,9 @@ footer{
   border-radius: 5vw;
   box-shadow: 0px 0px 10px 2px rgba(184, 132, 233, 0.336);
 }
+.inputComent i{
+  cursor:pointer
+}
 .likesAndOthers,.likes{
   display: flex;
   align-content: center;
@@ -774,24 +777,54 @@ footer{
   justify-content: space-around;
   align-items: center;
 }
+.boxComent{
+  display: flex;
+  justify-content: space-between;
+}
+.editUserComment{
+  display: flex;
+  flex-direction: column;
+  justify-content:space-evenly;
+  align-items: center;
+  padding: 0 0 0 1.5vw;
+  margin-top: 3.5vh;
+}
+.editUserComment i{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: .5vw;
+  min-height: 2.2vw;
+  min-width: 2.2vw;
+  color: black;
+  margin-left: .25vw;
+  cursor: pointer;
+}
+.buttonUserEdit{
+  background-color:rgb(224, 132, 26);
+}
+.buttonUserDelete{
+  background-color: rgb(189, 0, 0);
+}
 .coment{
   display: flex;
   justify-content: space-between;
 }
 .imgUserComent{
-  min-height: 60px;
-  min-width: 60px;
+  min-height: 60px !important;
+  min-width: 60px !important;
   width: 5vw;
   height: 5vw;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  border-radius: 20vw;
+  border-radius: 20vw;    
+  margin-right: 1vw;
 }
 .burbleComent{
-  max-width: 90%;
+  max-width: 85%;
   text-align: left;
-  margin: 2vw 0 0 .25vw;
+  margin: 2vw 0 0 0;
   padding: 1.25vw .75vw;
   display: flex;
   flex-direction: column;
@@ -811,21 +844,30 @@ footer{
   margin: 2vw auto 0 auto;
 }
 .inputComent>div{
-  max-width: 90%;
+  min-width: 45vw;
+  max-width: 80%;
   max-height: 5vh;
   display: flex;
-  justify-content:space-around;
+  justify-content:space-between;
   align-items: center;
   border-radius: 5vw;
   background-color: rgba(99, 29, 165, 0.158); 
   box-shadow: 0px 0px 10px 4px rgba(184, 132, 233, 0.336);
 }
-#inputComent{
+.boxInputComent{
   border-bottom:0 !important;
-  margin: .1vw 0 0 2vw;
+  margin: .1vw 0 0 2vw !important;
+  width: 100% !important;
+}
+.boxInputComent:active,.boxInputComent:hover,.boxInputComent:focus{
+  border-bottom:0 !important;
+  box-shadow: none !important;
 }
 .inputComent i{
   padding-right: 1vw;
+}
+.inputComent .input-field{
+  width: 85%;
 }
 .inputComent label, .inputComent input, .inputComent i{
   color:white !important

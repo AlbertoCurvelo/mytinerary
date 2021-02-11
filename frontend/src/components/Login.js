@@ -19,7 +19,7 @@ const Login = (props) =>{
   //funciones
   const responseGoogle = async response => {
     if (response.error) {
-        alert("Error connecting to google server")
+      Alert.error("Error connecting to google server")
     } else {
       const respuesta = await props.loginUser({
           userName: response.profileObj.email,

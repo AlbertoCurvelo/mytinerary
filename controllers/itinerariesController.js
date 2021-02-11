@@ -35,6 +35,7 @@ const itinerariesController = {
     const id = req.params.id
     try {
       const data= await Itinerary.find({idCity:id})
+      .populate('idCity')
       .populate('idUserAutor')
       .populate({
         path:'arrayComents',
@@ -49,8 +50,7 @@ const itinerariesController = {
     }
   },
   likeOrDislike:async(req,res)=>{
-    const idUser= req.params.idUser
-    const idItinerary= req.params.idItinerary
+    const {idUser,idItinerary}= req.body.userLikeData
     const arrayLikes= await Itinerary.find({_id:idItinerary,arrayLikes:idUser})
     if(arrayLikes.length===0){
       const result= await Itinerary.findOneAndUpdate(
@@ -65,19 +65,34 @@ const itinerariesController = {
         .then(()=>res.json({success:true}))
         .catch(e=>res.json({success:false, error:"Error while modifying in database."}))
     }
-    /*Itinerary.findByIdAndUpdate(
-      {_id:id},
-      {
-        titleCity:newCity.titleCity,
-        directionImage:newCity.directionImage,
-        descriptionCity:newCity.descriptionCity
-      })
-    .then(modificoCity =>{
-      return res.json({success:true, respuesta: "test"})
-    })
-    .catch(error =>{
-      return res.json({success:false, error: 'Error al intentar modificar: '+ error})
-    })*/
+  },
+  newComment:async(req,res)=>{
+    const {idUser,idItinerary,commentUser}=req.body.commentUser
+    await Itinerary.findOneAndUpdate(
+      {_id:idItinerary},
+      { $push: {'arrayComents': {idUser:idUser,coment:commentUser}} })
+      .then(()=>res.json({success:true}))
+      .catch(e=>res.json({success:false, error:"Error while modifying in database."}))
+  },
+  delComment:async(req,res)=>{
+    const {idItinerary,idComment}=req.body.commentDelete
+    await Itinerary.findOneAndUpdate(
+      {_id:idItinerary},
+      { $pull: {'arrayComents': {_id:idComment}} })
+      .then(()=>res.json({success:true}))
+      .catch(e=>res.json({success:false, error:"Error while modifying in database."}))
+  },
+  editComment:async(req,res)=>{
+    console.log
+    const {idItinerary,idComment,commentUser,idUser}=req.body.commentEdit
+    /*await Itinerary.findOneAndUpdate(
+      {_id:idItinerary},
+      { $pull: {'arrayComents': {_id:idComment}} })*/
+    await Itinerary.updateOne(
+      {'arrayComents._id':idComment},
+      { '$set': {'arrayComents.$.coment':commentUser}} )
+      .then(()=>res.json({success:true}))
+      .catch(e=>res.json({success:false, error:"Error while modifying in database."}))
   }
 }
 

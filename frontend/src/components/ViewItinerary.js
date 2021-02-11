@@ -6,7 +6,18 @@ import Loader from './Loader'
 import {Alert} from 'rsuite'
 import itinerariesActions from '../redux/actions/itineraryActions'
 
-const ViewItinerary =({itinerary,userLogged,setLikeThisItinerary})=>{
+const ViewItinerary =({itinerary,userLogged,setLikeThisItinerary,newComment,delComment,editComment})=>{
+  const [commentUser,setCommentUser]=useState({})
+  const [userEditComment,setUserEditComment]=useState(false)
+  //parametros recibidos del padre
+  const {
+    title,idUserAutor,
+    arrayLikes,duration,valoration,hashTags,arrayComents,arrayActivities,_id
+  } = itinerary
+  //variables de estado del componente
+  const [viewMoreOrLess,setViewMoreOrLess]=useState(false)
+  const valorations=[1,2,3,4,5]
+
   function ejecute(e){
     console.log("me ejecute desde :")
     console.log(e)
@@ -16,16 +27,34 @@ const ViewItinerary =({itinerary,userLogged,setLikeThisItinerary})=>{
     console.log(e)
   }
   function alertNotUser() {
-    Alert.warning('You must be a logged in user to like.',3500)
+    Alert.warning('You must be a logged in user to like/comment.',3500)
   }
-  //parametros recibidos del padre
-  const {
-    title,idUserAutor,
-    arrayLikes,duration,valoration,hashTags,arrayComents,arrayActivities,_id
-  } = itinerary
-  //variables de estado del componente
-  const [viewMoreOrLess,setViewMoreOrLess]=useState(false)
-  const valorations=[1,2,3,4,5]
+  function sendNewComment() {
+    !userEditComment &&
+      newComment(commentUser)
+      document.getElementById('inputComent').value=""
+    userEditComment &&
+      editComment(commentUser)
+      document.getElementById('inputComent').value=""
+      setUserEditComment(!userEditComment)
+  }
+  const enterKeyboard = e =>{
+    //El numero 13 seria la tecla enter, si fue presionada envio la validacion
+    //como si fuera el boton sign in
+    if (e.charCode === 13) {
+      sendNewComment()
+    }
+  }
+  const leerComment = e => {
+    const valor = e.target.value
+    const campo = e.target.name
+    setCommentUser({
+        ...commentUser,
+        idUser:userLogged._id,
+        idItinerary:itinerary._id,
+        [campo]: valor
+    })
+  }
   return (
     <div className="itineraryView">
       <div className="itineraryDetail">
@@ -39,7 +68,7 @@ const ViewItinerary =({itinerary,userLogged,setLikeThisItinerary})=>{
           <h4>{title}</h4>
           <div className="likesAndOthers">
             <div className="likes">
-              <i onClick={userLogged._id 
+              <i onClick={userLogged._id
               ? ()=>{
                 const respuesta=setLikeThisItinerary({"idUser":userLogged._id,"idItinerary":itinerary._id})
                 !respuesta && Alert.error('Error while modifying in database.',3500)
@@ -98,20 +127,41 @@ const ViewItinerary =({itinerary,userLogged,setLikeThisItinerary})=>{
         }
         <div className="comments">
           {
-          arrayComents.map((coment,i)=>{
+          arrayComents.map((comment,i)=>{
             return (
-              <Coment key={coment.userAutor+'d'+i} coment={coment}/>
+            <>
+              <Coment key={comment.userAutor+'d'+i} comment={comment} editComment={editComment}
+              userLogged={userLogged} delComment={delComment} idItinerary={itinerary._id}
+              userEditComment={userEditComment} setUserEditComment={setUserEditComment}
+              commentUser={commentUser} setCommentUser={setCommentUser}/>
+            </>
             )
           })
           }
           <div className="inputComent">
             <div>
-              <TextInput
+              {!userLogged._id
+              ?<>
+                <TextInput
                 disabled
                 id={"inputComent"+_id}
-                value="Just for logged users!"
-              />
-              <i className="material-icons red-text">send</i>
+                value="Just for logged users!" 
+                className="boxInputComent"
+                />
+                <i onClick={()=>alertNotUser()} className="material-icons red-text">send</i>
+              </>
+              :<>
+              <TextInput
+                id="inputComent"
+                placeholder="Write a comment"
+                name="commentUser" 
+                className="boxInputComent"
+                onChange={leerComment}
+                onKeyPress={enterKeyboard}
+                />
+                <i onClick={()=>{sendNewComment()}} className="material-icons red-text">send</i>
+              </>
+              }
             </div>
           </div>
         </div>
@@ -136,6 +186,9 @@ const mapStateToProps = state =>{
   }
 }
 const mapDispatchToProps={
-  setLikeThisItinerary:itinerariesActions.setLikeThisItinerary
+  setLikeThisItinerary:itinerariesActions.setLikeThisItinerary,
+  newComment:itinerariesActions.newComment,
+  delComment:itinerariesActions.delComment,
+  editComment:itinerariesActions.editComment
 }
 export default connect(mapStateToProps,mapDispatchToProps)(ViewItinerary)
