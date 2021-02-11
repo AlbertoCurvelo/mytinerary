@@ -33,7 +33,7 @@ router.route('/comments/editComment')
 .put(itinerariesController.editComment)
 
 router.route('/comments/newComment')
-.put(itinerariesController.newComment)
+.put(passport.authenticate('jwt',{session:false}),itinerariesController.newComment)
 
 router.route('/user')
 .post(userController.register)

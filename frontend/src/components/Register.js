@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import {TextInput,Button,Select} from 'react-materialize'
-import {useState,useEffect} from 'react'
+import {useState} from 'react'
 import authActions from '../redux/actions/authActions'
 import {Alert,Message} from 'rsuite'
 import GoogleLogin from 'react-google-login';
@@ -71,8 +71,8 @@ const Register = ({closeDrawer,newUserSave}) =>{
     if (!validationUserData(newUser)) {
       setErrores([])
       const respuesta = await newUserSave(newUser)
-      if (respuesta && !respuesta.success) {
-          setErrores(respuesta.errores)
+      if (respuesta &&!respuesta.success) {
+        setErrores([respuesta.error])
       } else {
         closeDrawer()
         Alert.success('the account has been created.',5000)
@@ -142,7 +142,7 @@ const Register = ({closeDrawer,newUserSave}) =>{
           Sign in
         </Button>
         <div className="errores">
-            {errores.map((error,i) => 
+            {errores && errores.map((error,i) => 
             <Message closable showIcon key={'errorM'+i} type="error" description={error} className="messageError"/> )}
         </div>
       </div>

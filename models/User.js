@@ -6,7 +6,7 @@ const UserSchema = new mongoose.Schema({
   userName:{type: String, required: true},
   mail:{type: String, required:true},
   urlPic:{type: String, required:false, default:'../assets/img/logoUser.png'},
-  contry:{type: String, required:true},
+  contry:{type: String, required:false},
   password:{type: String , required: true},
   typeAccount:{type: String, required:false, default:"user"},
   whereAccount:{type: String, required:false, default:"local"},

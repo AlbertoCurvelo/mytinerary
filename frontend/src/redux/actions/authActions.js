@@ -3,11 +3,11 @@ import axios from "axios"
 const authActions = {
     newUser: (nuevoUsuario) => {
         return async (dispatch, getState) => {
+            console.log(nuevoUsuario)
             const response = await axios.post('http://localhost:4000/api/user/register', nuevoUsuario)
-           console.log(response)
             if (!response.data.success) {
-               return response.data
-           }
+                return response.data
+            }
             dispatch({type: 'LOG_USER', payload: response.data})
         }
     },
@@ -23,9 +23,7 @@ const authActions = {
             })
                 dispatch({type: 'LOG_USER', payload: {response: {...respuesta.data.response}}})
             } catch(err) {
-                console.log(err)
                 if (err.response.status === 401) {
-                    alert("error with token")
                     localStorage.clear()
                     return '/'
                 }

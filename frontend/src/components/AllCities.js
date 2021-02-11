@@ -1,7 +1,6 @@
 import {Link} from 'react-router-dom'
 
 const AllCities = ({_id, directionImage , titleCity}) => {
-  console.log(_id)
   return (
     <Link key={_id} to={`/cities/${_id}`}>
       <div style={{

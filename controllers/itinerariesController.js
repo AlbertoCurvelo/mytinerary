@@ -83,11 +83,7 @@ const itinerariesController = {
       .catch(e=>res.json({success:false, error:"Error while modifying in database."}))
   },
   editComment:async(req,res)=>{
-    console.log
-    const {idItinerary,idComment,commentUser,idUser}=req.body.commentEdit
-    /*await Itinerary.findOneAndUpdate(
-      {_id:idItinerary},
-      { $pull: {'arrayComents': {_id:idComment}} })*/
+    const {idComment,commentUser}=req.body.commentEdit
     await Itinerary.updateOne(
       {'arrayComents._id':idComment},
       { '$set': {'arrayComents.$.coment':commentUser}} )

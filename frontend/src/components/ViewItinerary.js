@@ -17,15 +17,6 @@ const ViewItinerary =({itinerary,userLogged,setLikeThisItinerary,newComment,delC
   //variables de estado del componente
   const [viewMoreOrLess,setViewMoreOrLess]=useState(false)
   const valorations=[1,2,3,4,5]
-
-  function ejecute(e){
-    console.log("me ejecute desde :")
-    console.log(e)
-  }
-  function siNo(e){
-    console.log("Si no :")
-    console.log(e)
-  }
   function alertNotUser() {
     Alert.warning('You must be a logged in user to like/comment.',3500)
   }
@@ -52,6 +43,7 @@ const ViewItinerary =({itinerary,userLogged,setLikeThisItinerary,newComment,delC
         ...commentUser,
         idUser:userLogged._id,
         idItinerary:itinerary._id,
+        token:userLogged.token,
         [campo]: valor
     })
   }
@@ -75,11 +67,12 @@ const ViewItinerary =({itinerary,userLogged,setLikeThisItinerary,newComment,delC
               }:()=>alertNotUser()} 
               className="material-icons red-text favItinerary">{
               arrayLikes &&
-              arrayLikes.map(idUser=>{
-                if(idUser!==userLogged._id){
-                return("favorite_border")
-                }else{
+              arrayLikes.map((idUser,i)=>{
+                if(idUser===userLogged._id){
                   return("favorite")
+                }else{
+                  if(arrayLikes.length===(i+1))
+                    return("favorite_border")
                 }
               })}
               {arrayLikes.length===0 && "favorite_border"}

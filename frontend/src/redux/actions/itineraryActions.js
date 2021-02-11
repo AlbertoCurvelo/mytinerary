@@ -16,8 +16,13 @@ const itineraryActions = {
       dispatch({type: "SET_CHANGE_COMMENT", payload: respuesta.data.success})}
   },
   newComment:(commentUser)=>{
+    const {token}=commentUser
     return async (dispatch,getState) =>{
-      const respuesta=await axios.put(direccionHost+'/comments/newComment',{commentUser})
+      const respuesta=await axios.put(direccionHost+'/comments/newComment',{commentUser,token},{
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
       if(!respuesta.data.success)return respuesta.data.success
       dispatch({type: "SET_CHANGE_COMMENT", payload: respuesta.data.success})}
     },
@@ -28,7 +33,6 @@ const itineraryActions = {
       dispatch({type: "SET_CHANGE_COMMENT", payload: respuesta.data.success})}
   },
   editComment:(commentEdit)=>{
-    console.log(commentEdit)
     return async (dispatch,getState)=>{
       const respuesta=await axios.put(direccionHost+'/comments/editComment',{commentEdit})
       if(!respuesta.data.success)return respuesta.data.success
