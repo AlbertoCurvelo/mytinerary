@@ -122,12 +122,10 @@ const ViewItinerary =({itinerary,userLogged,setLikeThisItinerary,newComment,delC
           {
           arrayComents.map((comment,i)=>{
             return (
-            <>
               <Coment key={comment.userAutor+'d'+i} comment={comment} editComment={editComment}
               userLogged={userLogged} delComment={delComment} idItinerary={itinerary._id}
               userEditComment={userEditComment} setUserEditComment={setUserEditComment}
               commentUser={commentUser} setCommentUser={setCommentUser}/>
-            </>
             )
           })
           }

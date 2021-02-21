@@ -18,7 +18,7 @@ const itineraryActions = {
   newComment:(commentUser)=>{
     const {token}=commentUser
     return async (dispatch,getState) =>{
-      const respuesta=await axios.put(direccionHost+'/comments/newComment',{commentUser,token},{
+      const respuesta=await axios.put(direccionHost+'/comments/newComment',{commentUser},{
         headers: {
             Authorization: `Bearer ${token}`
         }

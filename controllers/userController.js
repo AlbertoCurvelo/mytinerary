@@ -5,7 +5,6 @@ const jwt = require('jsonwebtoken')
 const userController = {
   //Añadir usuario
   register:async (req,res)=>{
-    console.log(req)
     var errores = []
     const {firtsName,lastName,userName,mail,urlPic,contry,password,typeAccount,whereAccount} = req.body
     const userNameExists = await User.findOne({userName: userName})
