@@ -9,6 +9,7 @@ const Register = ({closeDrawer,newUserSave}) =>{
   const [errores, setErrores] = useState([])
   const [newUser,setNewUser]=useState({})
   const countries=require('../data/dataContryNames.json')
+  const idClientGoogle="60465909921-gfo118jm0bt86m3suk9kh3vtrkpkmp6h.apps.googleusercontent.com"
   //funciones
   const responseGoogle = async (response) => {
     if (response.error) {
@@ -96,7 +97,7 @@ const Register = ({closeDrawer,newUserSave}) =>{
       <div className="iconosRedes">
         <div className="googleIcon">
           <GoogleLogin
-            clientId="60465909921-7m67djmblskurmq8p4ngv9t4obo210ct.apps.googleusercontent.com"
+            clientId={idClientGoogle}
             onSuccess={responseGoogle}
             onFailure={responseGoogle}
             cookiePolicy={'single_host_origin'}

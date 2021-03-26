@@ -8,6 +8,8 @@ import GoogleLogin from 'react-google-login';
 const Login = (props) =>{
   const [userLogin, setUserLogin] = useState({})
   const [errores, setErrores] = useState([])
+  const idClientGoogle="60465909921-gfo118jm0bt86m3suk9kh3vtrkpkmp6h.apps.googleusercontent.com"
+  
   const leerInput = e => {
     const valor = e.target.value
     const campo = e.target.name
@@ -76,7 +78,7 @@ const Login = (props) =>{
         <div className="iconosRedes">
           <div className="googleIcon">
             <GoogleLogin
-              clientId="60465909921-7m67djmblskurmq8p4ngv9t4obo210ct.apps.googleusercontent.com"
+              clientId={idClientGoogle}
               onSuccess={responseGoogle}
               onFailure={responseGoogle}
               cookiePolicy={'single_host_origin'}
