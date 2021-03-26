@@ -24,4 +24,4 @@ const host = process.env.HOST || '0.0.0.0'
 
 //app.listen(port, host,  console.log('app listening'))
 /*Server port e iniciacion*/
-app.listen(process.env.PORT, () => console.log(`App listening on port ${process.env.PORT}`))
+app.listen(port, host, () => console.log(`App listening on port ${process.env.PORT}`))

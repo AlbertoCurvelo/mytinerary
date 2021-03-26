@@ -9,7 +9,7 @@ const ModalEdit = (props) =>{
   const {_id,titleCity,directionImage,descriptionCity}=props.city
   const editCity=async (e) =>{
     e.preventDefault();
-    const res= await axios.put(`http://localhost:4000/api/admin/cities/${e.target.value}`, {newCity:newCity})
+    const res= await axios.put(`https://curvelo-mytinerary.herokuapp.com/api/admin/cities/${e.target.value}`, {newCity:newCity})
     console.log(res.data)
     if(res.data.success){
       <Alert setNewAlert={setNewAlert} success={res.data.success}/>

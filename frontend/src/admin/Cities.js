@@ -24,7 +24,7 @@ const Cities = () =>{
   }
   const bGuardarNewCity = async (e) =>{
     e.preventDefault();
-    const res= await axios.post('http://localhost:4000/api/admin/cities/newCity',newCity)
+    const res= await axios.post('https://curvelo-mytinerary.herokuapp.com/api/admin/cities/newCity',newCity)
     if(res.data.success){
       <Alert setNewAlert={setNewAlert} success={res.data.success}/>
       e.target.parentElement.querySelector('#titleNewCity').value="" 

@@ -3,7 +3,7 @@ import {Table,Button,Icon} from 'react-materialize'
 import axios from 'axios'
 import ModalEdit from './ModalEdit'
 import Alert from './Alert'
-const direccionHost='http://localhost:4000/api'
+const direccionHost='https://curvelo-mytinerary.herokuapp.com/api'
 
 const CargarDatosCities = () =>{
   const [refresh,setRefresh]=useState(false)
@@ -20,7 +20,7 @@ const CargarDatosCities = () =>{
 
   const eliminarCity=async (e) =>{
     e.preventDefault();
-    const res= await axios.delete(`http://localhost:4000/api/admin/cities/${e.target.value}`)
+    const res= await axios.delete(`${direccionHost}/admin/cities/${e.target.value}`)
     if(res.data.success){
       <Alert setNewAlert={setNewAlert} success={res.data.success}/>
       setRefresh(!refresh)

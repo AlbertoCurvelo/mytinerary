@@ -1,4 +1,4 @@
-const direccionHost='http://localhost:4000/api'
+const direccionHost='https://curvelo-mytinerary.herokuapp.com/api'
 const cityActions = {
   getAllCities: () => {
     return async (dispatch, getState) => {

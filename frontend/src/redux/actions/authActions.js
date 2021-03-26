@@ -4,7 +4,7 @@ const authActions = {
     newUser: (nuevoUsuario) => {
         return async (dispatch, getState) => {
             console.log(nuevoUsuario)
-            const response = await axios.post('http://localhost:4000/api/user/register', nuevoUsuario)
+            const response = await axios.post('https://curvelo-mytinerary.herokuapp.com/api/user/register', nuevoUsuario)
             if (!response.data.success) {
                 return response.data
             }
@@ -16,7 +16,7 @@ const authActions = {
         
         return async (dispatch, getState) => {
             try {
-                const respuesta = await axios.post('http://localhost:4000/api/user/localStorage', {token}, {
+                const respuesta = await axios.post('https://curvelo-mytinerary.herokuapp.com/api/user/localStorage', {token}, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -39,7 +39,7 @@ const authActions = {
 
     loginUser: (user) => {
         return async (dispatch, getState) => {
-            const respuesta = await axios.post('http://localhost:4000/api/user/signin', user)
+            const respuesta = await axios.post('https://curvelo-mytinerary.herokuapp.com/api/user/signin', user)
             if (!respuesta.data.success) {
                 return respuesta.data
             }
