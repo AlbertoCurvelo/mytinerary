@@ -16,7 +16,8 @@ Important:
 ## Installation
 To install and run this project just type and run
 ```bash 
-npm install```
+npm install
+```
 
 ## Preview
 When you make the .env and open the server you will start with this screen.
