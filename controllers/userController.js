@@ -93,7 +93,6 @@ const userController = {
     }
   },
   logingForLS: (req, res) => {
-    console.log(req)
       res.json({success: true, response: {
         token: req.body.token, 
         firtsName:req.user.firtsName,

@@ -3,7 +3,6 @@ import axios from "axios"
 const authActions = {
     newUser: (nuevoUsuario) => {
         return async (dispatch, getState) => {
-            console.log(nuevoUsuario)
             const response = await axios.post('https://curvelo-mytinerary.herokuapp.com/api/user/register', nuevoUsuario)
             if (!response.data.success) {
                 return response.data

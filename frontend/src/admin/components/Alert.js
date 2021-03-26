@@ -1,5 +1,4 @@
 const Alert = ({setNewAlert,success,error=0}) =>{
-  console.log(success)
   return (
     success
     ?setNewAlert({
