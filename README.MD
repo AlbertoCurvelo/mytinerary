@@ -22,7 +22,7 @@ npm install
 ## Preview
 When you make the .env and open the server you will start with this screen.
 
-! [](/preview.png)
+![](/preview.png)
 
-### Grades
+### Notes
 If you have any questions about the implementation of the code, you can contact me at [linkedin](https://www.linkedin.com/in/alberto-curvelo/)
