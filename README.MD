@@ -9,12 +9,12 @@ Reference:
 * PORT, within the local job use 4000.
 * HOST, you can use localhost or 127.0.0.1.
 * SECRET_KEY, you can use the one of your preference.
-Important: 
-* Change all routes "https://curvelo-mytinerary.herokuapp.com/api" for yours direction backend.
-* Change the content the variable "idClientGoogle" ubicated "/frontend/src/components/Login.js" and in"/frontend/src/components/Register.js" for yours, from Google credentials OAuth 2.0.
+* Important: 
+  - Change all routes "https://curvelo-mytinerary.herokuapp.com/api" for yours direction backend.
+  - Change the content the variable "idClientGoogle" ubicated "/frontend/src/components/Login.js" and in"/frontend/src/components/Register.js" for yours, from Google credentials OAuth 2.0.
 
 ## Installation
-To install and run this project just type and run
+To install and run this project just type and run:
 ```bash 
 npm install
 ```
@@ -25,4 +25,4 @@ When you make the .env and open the server you will start with this screen.
 ![](/preview.png)
 
 ### Notes
-If you have any questions about the implementation of the code, you can contact me at [linkedin](https://www.linkedin.com/in/alberto-curvelo/)
+If you have any questions about the implementation of the code, you can contact me at [linkedin](https://www.linkedin.com/in/alberto-curvelo/).
