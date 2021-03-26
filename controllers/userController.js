@@ -34,23 +34,6 @@ const userController = {
         success: false, error: errores})
     }
   },
-  putUser:(req,res)=>{
-    /*const id=req.params.id
-    const newCity=req.body.newCity
-    City.findByIdAndUpdate(
-      {_id:id},
-      {
-        titleCity:newCity.titleCity,
-        directionImage:newCity.directionImage,
-        descriptionCity:newCity.descriptionCity
-      })
-    .then(modificoCity =>{
-      return res.json({success:true, respuesta: modificoCity})
-    })
-    .catch(error =>{
-      return res.json({success:false, error: 'Error al intentar modificar: '+ error})
-    })*/
-  },
   //Borrar usuario
   deleteUser: async (req,res)=>{
     const id=req.params.id
